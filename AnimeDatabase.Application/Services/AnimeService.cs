@@ -25,13 +25,7 @@ namespace AnimeDatabase.Application.Services
         public AnimeDetailsVm GetAnimeDetails(int animeId)
         {
             var anime = _animeRepo.GetAnime(animeId);
-            //var animeVm = _mapper.Map<AnimeDetailsVm>(anime);
-            var animeVm = new AnimeDetailsVm();
-
-            animeVm.Id = anime.Id;
-            animeVm.Title = anime.Title;
-            animeVm.Description = anime.AnimeDetails.Description;
-            
+            var animeVm = _mapper.Map<AnimeDetailsVm>(anime);
 
             return animeVm;
         }
@@ -56,13 +50,7 @@ namespace AnimeDatabase.Application.Services
 
         public int AddAnime(NewAnimeVm animeVm)
         {
-            //var anime = _mapper.Map<Anime>(animeVm);
-            var anime = new Anime();
-
-            anime.Id = animeVm.Id;
-            anime.Title = animeVm.Title;
-            anime.AnimeDetails.Description = animeVm.Description;
-            anime.TypeId = 1;
+            var anime = _mapper.Map<Anime>(animeVm);
 
             var id = _animeRepo.AddAnime(anime);
 
