@@ -39,14 +39,14 @@ namespace AnimeDatabase.Infrastructure.Migrations
                     b.ToTable("Animes");
                 });
 
-            modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeDetail", b =>
+            modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeDetails", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AnimeRef")
+                    b.Property<int>("AnimeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -66,13 +66,55 @@ namespace AnimeDatabase.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AnimeRef")
+                    b.HasIndex("AnimeId")
                         .IsUnique();
 
                     b.ToTable("AnimeDetails");
                 });
 
             modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeTag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AnimesTags");
+                });
+
+            modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AnimeTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "TV"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Movie"
+                        });
+                });
+
+            modelBuilder.Entity("AnimeDatabase.Domain.Model.Anime_AnimeTag", b =>
                 {
                     b.Property<int>("AnimeId")
                         .HasColumnType("int");
@@ -84,37 +126,7 @@ namespace AnimeDatabase.Infrastructure.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("AnimesTags");
-                });
-
-            modelBuilder.Entity("AnimeDatabase.Domain.Model.Tag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tags");
-                });
-
-            modelBuilder.Entity("AnimeDatabase.Domain.Model.Type", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Types");
+                    b.ToTable("Anime_AnimeTag");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -319,32 +331,32 @@ namespace AnimeDatabase.Infrastructure.Migrations
 
             modelBuilder.Entity("AnimeDatabase.Domain.Model.Anime", b =>
                 {
-                    b.HasOne("AnimeDatabase.Domain.Model.Type", "Type")
-                        .WithMany("animes")
+                    b.HasOne("AnimeDatabase.Domain.Model.AnimeType", "Type")
+                        .WithMany("Animes")
                         .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeDetail", b =>
+            modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeDetails", b =>
                 {
                     b.HasOne("AnimeDatabase.Domain.Model.Anime", "Anime")
-                        .WithOne("AnimeDetail")
-                        .HasForeignKey("AnimeDatabase.Domain.Model.AnimeDetail", "AnimeRef")
+                        .WithOne("AnimeDetails")
+                        .HasForeignKey("AnimeDatabase.Domain.Model.AnimeDetails", "AnimeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeTag", b =>
+            modelBuilder.Entity("AnimeDatabase.Domain.Model.Anime_AnimeTag", b =>
                 {
                     b.HasOne("AnimeDatabase.Domain.Model.Anime", "Anime")
-                        .WithMany("animeTags")
+                        .WithMany("Anime_AnimeTags")
                         .HasForeignKey("AnimeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AnimeDatabase.Domain.Model.Tag", "Tag")
-                        .WithMany("animeTags")
+                    b.HasOne("AnimeDatabase.Domain.Model.AnimeTag", "Tag")
+                        .WithMany("Anime_AnimeTags")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

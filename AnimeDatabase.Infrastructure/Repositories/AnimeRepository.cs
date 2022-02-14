@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Type = AnimeDatabase.Domain.Model.Type;
+using Type = AnimeDatabase.Domain.Model.AnimeType;
 
 namespace AnimeDatabase.Infrastructure.Repositories
 {
@@ -54,16 +54,16 @@ namespace AnimeDatabase.Infrastructure.Repositories
         }
 
 
-        public IQueryable<Tag> GetAllTags()
-        {
-            var tags = _context.Tags;
+        //public IQueryable<AnimeAnimeTag> GetAllTags()
+        //{
+        //    var tags = _context.AnimesTags;
 
-            return tags;
-        }
+        //    return tags;
+        //}
 
-        public IQueryable<Type> GetAllTypes()
+        public IQueryable<AnimeType> GetAllTypes()
         {
-            var types = _context.Types;
+            var types = _context.AnimeTypes;
 
             return types;
         }
@@ -78,6 +78,11 @@ namespace AnimeDatabase.Infrastructure.Repositories
             _context.Attach(anime);
             _context.Entry(anime).Property("Title").IsModified = true;
             _context.SaveChanges();
+        }
+
+        public IQueryable<AnimeTag> GetAllTags()
+        {
+            throw new NotImplementedException();
         }
     }
 }

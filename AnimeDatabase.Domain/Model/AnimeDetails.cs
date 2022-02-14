@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace AnimeDatabase.Domain.Model
@@ -13,7 +14,10 @@ namespace AnimeDatabase.Domain.Model
         public string Rating { get; set; }
         public string Duration { get; set; }
 
-        public int AnimeRef { get; set; }
-        public Anime Anime { get; set; }
+        // klucz obcy do tabeli Anime
+        public int AnimeId { get; set; }
+
+        // przechowuje obiekt anime
+        public virtual Anime Anime { get; set; }
     }
 }

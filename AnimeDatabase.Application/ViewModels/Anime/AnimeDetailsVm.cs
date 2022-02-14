@@ -3,7 +3,7 @@ using AutoMapper;
 
 namespace AnimeDatabase.Application.ViewModels
 {
-    public class AnimeDetailsVm : IMapFrom<AnimeDatabase.Domain.Model.AnimeDetails>
+    public class AnimeDetailsVm : IMapFrom<Domain.Model.Anime>
     {
         public int Id { get; set; }
         public string Title { get; set; }

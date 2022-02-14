@@ -1,10 +1,6 @@
 ﻿using AnimeDatabase.Domain.Model;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Type = AnimeDatabase.Domain.Model.Type;
 
 namespace AnimeDatabase.Infrastructure
 {
@@ -13,40 +9,51 @@ namespace AnimeDatabase.Infrastructure
         public DbSet<Anime> Animes { get; set; }
         public DbSet<AnimeDetails> AnimeDetails { get; set; }
         public DbSet<AnimeTag> AnimesTags { get; set; }
-        public DbSet<Tag> Tags { get; set; }
-        public DbSet<Type> Types { get; set; }
+        public DbSet<Anime_AnimeTag> Anime_AnimeTag { get; set; }
+        public DbSet<AnimeType> AnimeTypes { get; set; }
 
         public Context(DbContextOptions options) : base(options)
         {
         }
 
+        // Fluent API
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
             //relacja one-to-one Anime i AnimeDetails
             builder.Entity<Anime>()
-                .HasOne(a => a.AnimeDetails)
-                .WithOne(a => a.Anime)
-                .HasForeignKey<AnimeDetails>(a => a.AnimeRef);
+                .HasOne<AnimeDetails>(x => x.AnimeDetails)
+                .WithOne(x => x.Anime)
+                .HasForeignKey<AnimeDetails>(x => x.AnimeId);
 
-            //builder.Entity<Anime>()
-            //    .HasOne(a => a.Type)
-            //    .WithMany(a => a.animes);
+            //relacja one-to-many Anime i Type
+            builder.Entity<Anime>()
+                .HasOne(x => x.Type)
+                .WithMany(x => x.Animes)
+                .HasForeignKey(x => x.TypeId);
 
             //relacja many-to-many Anime i Tag łącznikiem jest AnimeTag
-            builder.Entity<AnimeTag>()
-                .HasKey(a => new { a.AnimeId, a.TagId });
+            builder.Entity<Anime_AnimeTag>()
+                .HasKey(x => new { x.AnimeId, x.TagId });
 
-            builder.Entity<AnimeTag>()
-                .HasOne<Anime>(a => a.Anime)
-                .WithMany(a => a.animeTags)
-                .HasForeignKey(a => a.AnimeId);
+            builder.Entity<Anime_AnimeTag>()
+                .HasOne<Anime>(x => x.Anime)
+                .WithMany(x => x.Anime_AnimeTags)
+                .HasForeignKey(x => x.AnimeId);
 
-            builder.Entity<AnimeTag>()
-                .HasOne<Tag>(a => a.Tag)
-                .WithMany(a => a.animeTags)
-                .HasForeignKey(a => a.TagId);
+            builder.Entity<Anime_AnimeTag>()
+                .HasOne<AnimeTag>(x => x.Tag)
+                .WithMany(x => x.Anime_AnimeTags)
+                .HasForeignKey(x => x.TagId);
+
+
+            //ExampleData
+            builder.Entity<AnimeType>()
+                .HasData(
+                    new AnimeType { Id = 1, Name = "TV" },
+                    new AnimeType { Id = 2, Name = "Movie"}
+                );
         }
     }
 }

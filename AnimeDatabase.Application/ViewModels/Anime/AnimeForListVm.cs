@@ -10,6 +10,7 @@ namespace AnimeDatabase.Application.ViewModels
         
         public void Mapping(Profile profile)
         {
+            // <typ źródłowy, typ na jaki będę chciał mapować>
             profile.CreateMap<Domain.Model.Anime, AnimeForListVm>();
         }
     }

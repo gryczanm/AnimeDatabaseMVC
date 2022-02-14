@@ -4,11 +4,12 @@ using System.Text;
 
 namespace AnimeDatabase.Domain.Model
 {
+    //relacja many-to-many z Anime
     public class AnimeTag
     {
-        public int AnimeId { get; set; }
-        public Anime Anime { get; set; }
-        public int TagId { get; set; }
-        public Tag Tag { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        public ICollection<Anime_AnimeTag> Anime_AnimeTags { get; set; }
     }
 }

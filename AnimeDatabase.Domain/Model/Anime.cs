@@ -8,12 +8,13 @@ namespace AnimeDatabase.Domain.Model
     {
         public int Id { get; set; }
         public string Title { get; set; }
+
+        // przechowuje obiekt AnimeDetails
+        public virtual AnimeDetails AnimeDetails { get; set; }
+
         public int TypeId { get; set; }
+        public virtual AnimeType Type { get; set; }
 
-        public AnimeDetails AnimeDetails { get; set; }
-
-        public virtual Type Type { get; set; }
-
-        public ICollection<AnimeTag> animeTags { get; set; }
+        public ICollection<Anime_AnimeTag> Anime_AnimeTags { get; set; }
     }
 }
