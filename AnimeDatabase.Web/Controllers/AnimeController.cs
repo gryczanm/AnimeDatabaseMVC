@@ -2,9 +2,6 @@
 using AnimeDatabase.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AnimeDatabase.Web.Controllers
 {
@@ -46,7 +43,8 @@ namespace AnimeDatabase.Web.Controllers
         [HttpGet]
         public IActionResult AddAnime()
         {
-            return View(new NewAnimeVm());
+            var model = _animeService.();
+            // return View(new NewAnimeVm());
         }
 
         [HttpPost]

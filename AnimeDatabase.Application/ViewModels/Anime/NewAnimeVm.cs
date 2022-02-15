@@ -1,4 +1,6 @@
-﻿using AnimeDatabase.Application.Mapping;
+﻿using System;
+using System.Collections.Generic;
+using AnimeDatabase.Application.Mapping;
 using AutoMapper;
 using FluentValidation;
 using System.ComponentModel.DataAnnotations;
@@ -12,14 +14,16 @@ namespace AnimeDatabase.Application.ViewModels
         [Required]
         public string Title { get; set; }
         public string Description { get; set; }
-        public int TypeId { get; set; }
+        
+        public List<TypeForListVm> AnimeTypes { get; set; }
 
         public void Mapping(Profile profile)
         {
             profile.CreateMap<NewAnimeVm, Domain.Model.Anime>()
-                .ForMember(a => a.TypeId, opt => opt.MapFrom(b => 1))
                 .ForPath(x => x.AnimeDetails.Description, opt => opt.MapFrom(x => x.Description))
                 .ReverseMap();
+            
+            profile.CreateMap<Domain.Model.Anime, AnimeForListVm>();
         }
     }
     
