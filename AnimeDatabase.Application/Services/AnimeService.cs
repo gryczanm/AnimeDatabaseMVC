@@ -48,6 +48,13 @@ namespace AnimeDatabase.Application.Services
             return animeList;
         }
 
+        public List<AnimeTypeVm> GetAllAnimeTypes()
+        {
+            List<AnimeTypeVm> allAnimeTypes = _animeRepo.GetAllTypes().ProjectTo<AnimeTypeVm>(_mapper.ConfigurationProvider).ToList();
+
+            return allAnimeTypes;
+        }
+
         public int AddAnime(NewAnimeVm animeVm)
         {
             var anime = _mapper.Map<Anime>(animeVm);

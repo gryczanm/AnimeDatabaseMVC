@@ -1,4 +1,5 @@
 ﻿using AnimeDatabase.Application.ViewModels;
+using AnimeDatabase.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,5 +13,6 @@ namespace AnimeDatabase.Application.Interfaces
         int AddAnime(NewAnimeVm anime);
         NewAnimeVm GetAnimeForEdit(int id);
         void UpdateAnime(NewAnimeVm model);
+        List<AnimeTypeVm> GetAllAnimeTypes();
     }
 }

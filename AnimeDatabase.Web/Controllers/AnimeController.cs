@@ -43,8 +43,12 @@ namespace AnimeDatabase.Web.Controllers
         [HttpGet]
         public IActionResult AddAnime()
         {
-            var model = _animeService.();
-            // return View(new NewAnimeVm());
+            var model = new NewAnimeVm()
+            {
+                AnimeTypes = _animeService.GetAllAnimeTypes()
+            };
+
+            return View(model);
         }
 
         [HttpPost]

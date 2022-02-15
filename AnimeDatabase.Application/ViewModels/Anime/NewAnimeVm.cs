@@ -11,19 +11,18 @@ namespace AnimeDatabase.Application.ViewModels
     public class NewAnimeVm : IMapFrom<Domain.Model.Anime>
     {
         public int Id { get; set; }
-        [Required]
         public string Title { get; set; }
         public string Description { get; set; }
-        
-        public List<TypeForListVm> AnimeTypes { get; set; }
+        public int TypeId { get; set; }
+        public List<AnimeTypeVm> AnimeTypes { get; set; }
 
+        
         public void Mapping(Profile profile)
         {
             profile.CreateMap<NewAnimeVm, Domain.Model.Anime>()
                 .ForPath(x => x.AnimeDetails.Description, opt => opt.MapFrom(x => x.Description))
+                .ForMember(x => x.TypeId, opt => opt.MapFrom(x => 2))
                 .ReverseMap();
-            
-            profile.CreateMap<Domain.Model.Anime, AnimeForListVm>();
         }
     }
     

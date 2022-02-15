@@ -53,14 +53,6 @@ namespace AnimeDatabase.Infrastructure.Repositories
             return animes;
         }
 
-
-        //public IQueryable<AnimeAnimeTag> GetAllTags()
-        //{
-        //    var tags = _context.AnimesTags;
-
-        //    return tags;
-        //}
-
         public IQueryable<AnimeType> GetAllTypes()
         {
             var types = _context.AnimeTypes;

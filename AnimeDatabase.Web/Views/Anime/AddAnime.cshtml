@@ -5,6 +5,8 @@
 
 <h4>Add Anime</h4>
 <hr />
+
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="AddAnime">
@@ -22,40 +24,36 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            @* @foreach (var type in Model.) *@
-            @*                 { *@
-            @*                     <tr> *@
-            @*                         <td> *@
-            @*                             @Html.DisplayFor(modelItem => item.Id) *@
-            @*                         </td> *@
-            @*                         <td> *@
-            @*                             @Html.DisplayFor(modelItem => item.Title) *@
-            @*                         </td> *@
-            @*                         <td> *@
-            @*                             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) | *@
-            @*                             @Html.ActionLink("Details", "View", new { item.Id }) | *@
-            @*                             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) *@
-            @*                         </td> *@
-            @*                     </tr> *@
-            @*                 } *@
             <div class="form-group">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Select type
-                    </button>
-                    <div class="dropdown-menu">
-                        @foreach (var animeType in Model.AnimeTypes)
-                        {
-                            <a class="dropdown-item" href="#">@Html.DisplayFor(x => animeType.Name)</a>
-                        }
-                    </div>
+                @*https://www.c-sharpcorner.com/article/dropdownlist-in-asp-net-mvc/*@
+                <div class="form-group">
+                    @Html.Hidden("Id")
+                    @Html.DropDownList("AnimeType", new List<SelectListItem>
+        {
+                    new SelectListItem { Text = Model.AnimeTypes[0].Name,
+                        Value=Model.AnimeTypes[0].Id.ToString() },
+                    new SelectListItem { Text = Model.AnimeTypes[1].Name,
+                       Value=Model.AnimeTypes[1].Id.ToString() }
+
+                }, new { @class = "textBox" })
+                    @*<div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select type
+                </button>
+                <div class="dropdown-menu">
+                    @foreach (var animeType in Model.AnimeTypes)
+                    {
+                        <a class="dropdown-item" href="#">@Html.DisplayFor(x => animeType.Name)</a>
+                    }
+                </div>
+            </div>*@
                 </div>
             </div>
-            @* <div class="form-group"> *@
-            @*     <label asp-for="TypeId" class="control-label"></label> *@
-            @*     <input asp-for="TypeId" class="form-control" /> *@
-            @*     <span asp-validation-for="TypeId" class="text-danger"></span> *@
-            @* </div> *@
+            @*<div class="form-group">
+                    <label asp-for="TypeId" class="control-label"></label>
+                    <input asp-for="TypeId" class="form-control" />
+                    <span asp-validation-for="TypeId" class="text-danger"></span>
+                </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -67,4 +65,16 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@*@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $(".dropdown-menu a").click(function () {
+                $(".btn:first-child").text($(this).text());
+                $(".btn:first-child").val($(this).text());
+            });
+
+        });
+    </script>
+}*@
 
