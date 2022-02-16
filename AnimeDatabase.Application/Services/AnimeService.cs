@@ -22,10 +22,10 @@ namespace AnimeDatabase.Application.Services
             _mapper = mapper;
         }
 
-        public AnimeDetailsVm GetAnimeDetails(int animeId)
+        public AnimeDetailsViewModel GetAnimeDetails(int animeId)
         {
             var anime = _animeRepo.GetAnime(animeId);
-            var animeVm = _mapper.Map<AnimeDetailsVm>(anime);
+            var animeVm = _mapper.Map<AnimeDetailsViewModel>(anime);
 
             return animeVm;
         }

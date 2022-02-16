@@ -8,7 +8,7 @@ namespace AnimeDatabase.Application.Interfaces
 {
     public interface IAnimeService
     {
-        AnimeDetailsVm GetAnimeDetails(int animeId);
+        AnimeDetailsViewModel GetAnimeDetails(int animeId);
         ListAnimeForList GetAllAnimesForList(int pageNumber, int pageSize, string searchString);
         int AddAnime(AnimeAddViewModel anime);
         AnimeAddViewModel GetAnimeForEdit(int id);
