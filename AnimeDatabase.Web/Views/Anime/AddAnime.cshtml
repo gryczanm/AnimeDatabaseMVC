@@ -25,37 +25,20 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @*https://www.c-sharpcorner.com/article/dropdownlist-in-asp-net-mvc/*@
                 <div class="form-group">
+                    <label class="control-label">Anime Type</label><br />
                     @Html.Hidden("Id")
                     @Html.DropDownList("AnimeType", new List<SelectListItem>
-        {
-                    new SelectListItem { Text = Model.AnimeTypes[0].Name,
-                        Value=Model.AnimeTypes[0].Id.ToString() },
-                    new SelectListItem { Text = Model.AnimeTypes[1].Name,
-                       Value=Model.AnimeTypes[1].Id.ToString() }
-
-                }, new { @class = "textBox" })
-                    @*<div class="btn-group">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Select type
-                </button>
-                <div class="dropdown-menu">
-                    @foreach (var animeType in Model.AnimeTypes)
                     {
-                        <a class="dropdown-item" href="#">@Html.DisplayFor(x => animeType.Name)</a>
-                    }
-                </div>
-            </div>*@
+                        new SelectListItem { Text = Model.AnimeTypes[0].Name,
+                            Value=Model.AnimeTypes[0].Id.ToString() },
+                        new SelectListItem { Text = Model.AnimeTypes[1].Name,
+                           Value=Model.AnimeTypes[1].Id.ToString() }
+                    }, new { @class = "btn btn-primary" })
                 </div>
             </div>
-            @*<div class="form-group">
-                    <label asp-for="TypeId" class="control-label"></label>
-                    <input asp-for="TypeId" class="form-control" />
-                    <span asp-validation-for="TypeId" class="text-danger"></span>
-                </div>*@
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Submit" class="btn btn-success" />
             </div>
         </form>
     </div>
@@ -64,17 +47,3 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
-@*@section Scripts
-{
-    <script type="text/javascript">
-        $(function () {
-            $(".dropdown-menu a").click(function () {
-                $(".btn:first-child").text($(this).text());
-                $(".btn:first-child").val($(this).text());
-            });
-
-        });
-    </script>
-}*@
-
