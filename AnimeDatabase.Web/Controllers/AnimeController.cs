@@ -43,7 +43,7 @@ namespace AnimeDatabase.Web.Controllers
         [HttpGet]
         public IActionResult AddAnime()
         {
-            var model = new NewAnimeVm()
+            var model = new AnimeAddViewModel()
             {
                 AnimeTypes = _animeService.GetAllAnimeTypes()
             };
@@ -53,7 +53,7 @@ namespace AnimeDatabase.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddAnime(NewAnimeVm model)
+        public IActionResult AddAnime(AnimeAddViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +74,7 @@ namespace AnimeDatabase.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditAnime(NewAnimeVm model)
+        public IActionResult EditAnime(AnimeAddViewModel model)
         {
             if (ModelState.IsValid)
             {

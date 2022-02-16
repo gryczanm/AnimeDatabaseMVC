@@ -43,7 +43,7 @@ namespace AnimeDatabase.Web
             services.AddControllersWithViews().AddFluentValidation(fv => fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false);
             services.AddRazorPages();
 
-            services.AddTransient<IValidator<NewAnimeVm>, NewAnimeValidation>();
+            services.AddTransient<IValidator<AnimeAddViewModel>, AnimeAddValidation>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

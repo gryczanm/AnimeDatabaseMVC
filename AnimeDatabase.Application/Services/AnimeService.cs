@@ -55,7 +55,7 @@ namespace AnimeDatabase.Application.Services
             return allAnimeTypes;
         }
 
-        public int AddAnime(NewAnimeVm animeVm)
+        public int AddAnime(AnimeAddViewModel animeVm)
         {
             var anime = _mapper.Map<Anime>(animeVm);
 
@@ -64,15 +64,15 @@ namespace AnimeDatabase.Application.Services
             return id;
         }
 
-        public NewAnimeVm GetAnimeForEdit(int id)
+        public AnimeAddViewModel GetAnimeForEdit(int id)
         {
             var anime = _animeRepo.GetAnime(id);
-            var animeVm = _mapper.Map<NewAnimeVm>(anime);
+            var animeVm = _mapper.Map<AnimeAddViewModel>(anime);
 
             return animeVm;
         }
 
-        public void UpdateAnime(NewAnimeVm model)
+        public void UpdateAnime(AnimeAddViewModel model)
         {
             var anime = _mapper.Map<Anime>(model);
             _animeRepo.UpdateAnime(anime);
