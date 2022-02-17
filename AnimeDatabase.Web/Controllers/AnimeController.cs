@@ -14,83 +14,83 @@ namespace AnimeDatabase.Web.Controllers
             _animeService = animeService;
         }
 
-        [HttpGet]
-        public IActionResult Index()
-        {
-            var model = _animeService.GetAllAnimesForList(2, 1, "");
+        //[HttpGet]
+        //public IActionResult Index()
+        //{
+        //    var model = _animeService.GetAllAnimesForList(2, 1, "");
             
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
-        [HttpPost]
-        public IActionResult Index(int pageSize, int? pageNumber, string searchString)
-        {
-            if (!pageNumber.HasValue)
-            {
-                pageNumber = 1;
-            }
+        //[HttpPost]
+        //public IActionResult Index(int pageSize, int? pageNumber, string searchString)
+        //{
+        //    if (!pageNumber.HasValue)
+        //    {
+        //        pageNumber = 1;
+        //    }
 
-            if (searchString is null)
-            {
-                searchString = String.Empty;
-            }
+        //    if (searchString is null)
+        //    {
+        //        searchString = String.Empty;
+        //    }
 
-            var model = _animeService.GetAllAnimesForList(pageSize, pageNumber.Value, searchString);
+        //    var model = _animeService.GetAllAnimesForList(pageSize, pageNumber.Value, searchString);
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
-        [HttpGet]
-        public IActionResult AddAnime()
-        {
-            var model = new AnimeAddViewModel()
-            {
-                AnimeTypes = _animeService.GetAllAnimeTypes()
-            };
+        //[HttpGet]
+        //public IActionResult AddAnime()
+        //{
+        //    var model = new AnimeAddViewModel()
+        //    {
+        //        AnimeTypes = _animeService.GetAllAnimeTypes()
+        //    };
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult AddAnime(AnimeAddViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var id = _animeService.AddAnime(model);
-                return RedirectToAction("Index");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult AddAnime(AnimeAddViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var id = _animeService.AddAnime(model);
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
-        [HttpGet]
-        public IActionResult EditAnime(int id)
-        {
-            var anime = _animeService.GetAnimeForEdit(id);
+        //[HttpGet]
+        //public IActionResult EditAnime(int id)
+        //{
+        //    var anime = _animeService.GetAnimeForEdit(id);
 
-            return View(anime);
-        }
+        //    return View(anime);
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult EditAnime(AnimeAddViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                _animeService.UpdateAnime(model);
-                return RedirectToAction("Index");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult EditAnime(AnimeAddViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _animeService.UpdateAnime(model);
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
-        [HttpGet]
-        public IActionResult View(int id)
-        {
-            var model = _animeService.GetAnimeDetails(id);
+        //[HttpGet]
+        //public IActionResult View(int id)
+        //{
+        //    var model = _animeService.GetAnimeDetails(id);
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
     }
 }

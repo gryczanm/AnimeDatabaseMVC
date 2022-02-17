@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Type = AnimeDatabase.Domain.Model.AnimeType;
+//using Type = AnimeDatabase.Domain.Model.AnimeType;
 
 namespace AnimeDatabase.Infrastructure.Repositories
 {
@@ -37,28 +37,28 @@ namespace AnimeDatabase.Infrastructure.Repositories
             }
         }
 
-        public Anime GetAnime(int animeId)
-        {
-            var anime = _context.Animes.Include(a => a.Type)
-                .Include(a => a.AnimeDetails)
-                .FirstOrDefault(a => a.Id == animeId);
+        //public Anime GetAnime(int animeId)
+        //{
+        //    var anime = _context.Animes.Include(a => a.Type)
+        //        .Include(a => a.AnimeDetails)
+        //        .FirstOrDefault(a => a.Id == animeId);
 
-            return anime;
-        }
+        //    return anime;
+        //}
 
-        public IQueryable<Anime> GetAnimesByTypeId(int typeId)
-        {
-            var animes = _context.Animes.Where(a => a.TypeId == typeId);
+        //public IQueryable<Anime> GetAnimesByTypeId(int typeId)
+        //{
+        //    var animes = _context.Animes.Where(a => a.TypeId == typeId);
 
-            return animes;
-        }
+        //    return animes;
+        //}
 
-        public IQueryable<AnimeType> GetAllTypes()
-        {
-            var types = _context.AnimeTypes;
+        //public IQueryable<AnimeType> GetAllTypes()
+        //{
+        //    var types = _context.AnimeTypes;
 
-            return types;
-        }
+        //    return types;
+        //}
 
         public IQueryable<Anime> GetAllAnimes()
         {
@@ -72,9 +72,9 @@ namespace AnimeDatabase.Infrastructure.Repositories
             _context.SaveChanges();
         }
 
-        public IQueryable<AnimeTag> GetAllTags()
-        {
-            throw new NotImplementedException();
-        }
+        //public IQueryable<AnimeTag> GetAllTags()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

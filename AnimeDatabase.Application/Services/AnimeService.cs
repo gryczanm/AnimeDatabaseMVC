@@ -22,60 +22,60 @@ namespace AnimeDatabase.Application.Services
             _mapper = mapper;
         }
 
-        public AnimeDetailsViewModel GetAnimeDetails(int animeId)
-        {
-            var anime = _animeRepo.GetAnime(animeId);
-            var animeVm = _mapper.Map<AnimeDetailsViewModel>(anime);
+        //public AnimeDetailsViewModel GetAnimeDetails(int animeId)
+        //{
+        //    var anime = _animeRepo.GetAnime(animeId);
+        //    var animeVm = _mapper.Map<AnimeDetailsViewModel>(anime);
 
-            return animeVm;
-        }
+        //    return animeVm;
+        //}
 
-        public ListAnimeForList GetAllAnimesForList(int pageSize, int pageNumber, string searchString)
-        {
-            var animes = _animeRepo.GetAllAnimes()
-                .Where(p => p.Title.StartsWith(searchString))
-                .ProjectTo<AnimeForListVm>(_mapper.ConfigurationProvider).ToList();
-            var animesToShow = animes.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
-            var animeList = new ListAnimeForList()
-            {
-                Animes = animesToShow,
-                CurrentPage = pageNumber,
-                PageSize = pageSize,
-                SearchString = searchString,
-                Count = animes.Count
-            };
+        //public ListAnimeForList GetAllAnimesForList(int pageSize, int pageNumber, string searchString)
+        //{
+        //    var animes = _animeRepo.GetAllAnimes()
+        //        .Where(p => p.Title.StartsWith(searchString))
+        //        .ProjectTo<AnimeForListVm>(_mapper.ConfigurationProvider).ToList();
+        //    var animesToShow = animes.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
+        //    var animeList = new ListAnimeForList()
+        //    {
+        //        Animes = animesToShow,
+        //        CurrentPage = pageNumber,
+        //        PageSize = pageSize,
+        //        SearchString = searchString,
+        //        Count = animes.Count
+        //    };
 
-            return animeList;
-        }
+        //    return animeList;
+        //}
 
-        public List<AnimeTypeVm> GetAllAnimeTypes()
-        {
-            List<AnimeTypeVm> allAnimeTypes = _animeRepo.GetAllTypes().ProjectTo<AnimeTypeVm>(_mapper.ConfigurationProvider).ToList();
+        //public List<AnimeTypeVm> GetAllAnimeTypes()
+        //{
+        //    List<AnimeTypeVm> allAnimeTypes = _animeRepo.GetAllTypes().ProjectTo<AnimeTypeVm>(_mapper.ConfigurationProvider).ToList();
 
-            return allAnimeTypes;
-        }
+        //    return allAnimeTypes;
+        //}
 
-        public int AddAnime(AnimeAddViewModel animeVm)
-        {
-            var anime = _mapper.Map<Anime>(animeVm);
+        //public int AddAnime(AnimeAddViewModel animeVm)
+        //{
+        //    var anime = _mapper.Map<Anime>(animeVm);
 
-            var id = _animeRepo.AddAnime(anime);
+        //    var id = _animeRepo.AddAnime(anime);
 
-            return id;
-        }
+        //    return id;
+        //}
 
-        public AnimeAddViewModel GetAnimeForEdit(int id)
-        {
-            var anime = _animeRepo.GetAnime(id);
-            var animeVm = _mapper.Map<AnimeAddViewModel>(anime);
+        //public AnimeAddViewModel GetAnimeForEdit(int id)
+        //{
+        //    var anime = _animeRepo.GetAnime(id);
+        //    var animeVm = _mapper.Map<AnimeAddViewModel>(anime);
 
-            return animeVm;
-        }
+        //    return animeVm;
+        //}
 
-        public void UpdateAnime(AnimeAddViewModel model)
-        {
-            var anime = _mapper.Map<Anime>(model);
-            _animeRepo.UpdateAnime(anime);
-        }
+        //public void UpdateAnime(AnimeAddViewModel model)
+        //{
+        //    var anime = _mapper.Map<Anime>(model);
+        //    _animeRepo.UpdateAnime(anime);
+        //}
     }
 }
