@@ -10,7 +10,7 @@ namespace AnimeDatabase.Application.Interfaces
     {
         AnimeDetailsViewModel GetAnimeDetails(int animeId);
         ListAnimeForList GetAllAnimesForList(int pageNumber, int pageSize, string searchString);
-        //int AddAnime(AnimeAddViewModel anime);
+        int AddAnime(AnimeAddViewModel anime);
         //AnimeAddViewModel GetAnimeForEdit(int id);
         //void UpdateAnime(AnimeAddViewModel model);
         //List<AnimeTypeVm> GetAllAnimeTypes();

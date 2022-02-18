@@ -48,6 +48,15 @@ namespace AnimeDatabase.Application.Services
             return animeList;
         }
 
+        public int AddAnime(AnimeAddViewModel animeVm)
+        {
+            var anime = _mapper.Map<Anime>(animeVm);
+
+            var id = _animeRepo.AddAnime(anime);
+
+            return id;
+        }
+
         //public List<AnimeTypeVm> GetAllAnimeTypes()
         //{
         //    List<AnimeTypeVm> allAnimeTypes = _animeRepo.GetAllTypes().ProjectTo<AnimeTypeVm>(_mapper.ConfigurationProvider).ToList();
@@ -55,14 +64,7 @@ namespace AnimeDatabase.Application.Services
         //    return allAnimeTypes;
         //}
 
-        //public int AddAnime(AnimeAddViewModel animeVm)
-        //{
-        //    var anime = _mapper.Map<Anime>(animeVm);
 
-        //    var id = _animeRepo.AddAnime(anime);
-
-        //    return id;
-        //}
 
         //public AnimeAddViewModel GetAnimeForEdit(int id)
         //{

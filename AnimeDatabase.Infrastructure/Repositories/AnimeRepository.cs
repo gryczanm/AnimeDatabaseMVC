@@ -18,13 +18,13 @@ namespace AnimeDatabase.Infrastructure.Repositories
             _context = context;
         }
 
-        //public int AddAnime(Anime anime)
-        //{
-        //    _context.Animes.Add(anime);
-        //    _context.SaveChanges();
+        public int AddAnime(Anime anime)
+        {
+            _context.Animes.Add(anime);
+            _context.SaveChanges();
 
-        //    return anime.Id;
-        //}
+            return anime.Id;
+        }
 
         //public void DeleteAnime(int animeId)
         //{
@@ -76,12 +76,12 @@ namespace AnimeDatabase.Infrastructure.Repositories
             return _context.Animes;
         }
 
-        public void UpdateAnime(Anime anime)
-        {
-            _context.Attach(anime);
-            _context.Entry(anime).Property("Title").IsModified = true;
-            _context.SaveChanges();
-        }
+        //public void UpdateAnime(Anime anime)
+        //{
+        //    _context.Attach(anime);
+        //    _context.Entry(anime).Property("Title").IsModified = true;
+        //    _context.SaveChanges();
+        //}
 
         //public IQueryable<AnimeTag> GetAllTags()
         //{

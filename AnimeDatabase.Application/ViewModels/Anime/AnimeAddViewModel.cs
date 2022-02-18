@@ -8,15 +8,16 @@ using AnimeDatabase.Domain.Model;
 
 namespace AnimeDatabase.Application.ViewModels
 {
-    public class AnimeAddViewModel  /*:IMapFrom<Domain.Model.Anime>*/
+    public class AnimeAddViewModel : IMapFrom<Anime>
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Description { get; set; }
-        public int TypeId { get; set; }
-        public List<AnimeTypeVm> AnimeTypes { get; set; }
+        public string Synopsis { get; set; }
 
-        
+        //public int TypeId { get; set; }
+        //public List<AnimeTypeVm> AnimeTypes { get; set; }
+
+
         //public void Mapping(Profile profile)
         //{
         //    profile.CreateMap<AnimeAddViewModel, Domain.Model.Anime>()
@@ -24,8 +25,15 @@ namespace AnimeDatabase.Application.ViewModels
         //        .ForMember(x => x.TypeId, opt => opt.MapFrom(x => 2))
         //        .ReverseMap();
         //}
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<AnimeAddViewModel, Anime>()
+                .ForPath(x => x.AnimeDetails.Synopsis, opt => opt.MapFrom(x => x.Synopsis))
+                .ReverseMap();
+        }
     }
-    
+
     public class AnimeAddValidation : AbstractValidator<AnimeAddViewModel>
     {
         public AnimeAddValidation()

@@ -8,15 +8,16 @@ namespace AnimeDatabase.Infrastructure
     {
         public DbSet<Anime> Animes { get; set; }
         public DbSet<AnimeDetails> AnimeDetails { get; set; }
+        //public DbSet<AnimeType> AnimeTypes { get; set; }
         // public DbSet<AnimeTag> AnimesTags { get; set; }
         // public DbSet<Anime_AnimeTag> Anime_AnimeTag { get; set; }
-        // public DbSet<AnimeType> AnimeTypes { get; set; }
+
 
         public Context(DbContextOptions options) : base(options)
         {
         }
 
-        // Fluent API
+        // Fluent APIs
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

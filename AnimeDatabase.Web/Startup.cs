@@ -40,7 +40,7 @@ namespace AnimeDatabase.Web
             services.AddApplication();
             services.AddInfrastructure();
 
-            services.AddControllersWithViews().AddFluentValidation(fv => fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false);
+            services.AddControllersWithViews().AddFluentValidation(fv => fv.DisableDataAnnotationsValidation = false);
             services.AddRazorPages();
 
             services.AddTransient<IValidator<AnimeAddViewModel>, AnimeAddValidation>();
@@ -52,7 +52,7 @@ namespace AnimeDatabase.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                app.UseDeveloperExceptionPage();
             }
             else
             {
