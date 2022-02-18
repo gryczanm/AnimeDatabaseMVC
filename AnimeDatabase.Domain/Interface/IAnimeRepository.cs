@@ -8,9 +8,9 @@ namespace AnimeDatabase.Domain.Interface
 {
     public interface IAnimeRepository
     {
-        //int AddAnime(Anime anime);
-        //Anime GetAnime(int animeId);
+        Anime GetAnime(int animeId);
         IQueryable<Anime> GetAllAnimes();
+        //int AddAnime(Anime anime);
         //void DeleteAnime(int animeId);
         //IQueryable<Anime> GetAnimesByTypeId(int typeId);
         ////IQueryable<AnimeTag> GetAllTags();

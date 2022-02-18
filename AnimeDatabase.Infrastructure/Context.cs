@@ -22,7 +22,7 @@ namespace AnimeDatabase.Infrastructure
             base.OnModelCreating(builder);
 
             builder.Entity<Anime>()
-                .HasOne<AnimeDetails>(x => x.Details)
+                .HasOne<AnimeDetails>(x => x.AnimeDetails)
                 .WithOne(x => x.Anime)
                 .HasForeignKey<AnimeDetails>(x => x.AnimeId);
 

@@ -22,6 +22,13 @@ namespace AnimeDatabase.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult View(int id)
+        {
+            var model = _animeService.GetAnimeDetails(id);
+
+            return View(model);
+        }
 
         //[HttpGet]
         //public IActionResult AddAnime()
@@ -68,12 +75,6 @@ namespace AnimeDatabase.Web.Controllers
         //    return View(model);
         //}
 
-        //[HttpGet]
-        //public IActionResult View(int id)
-        //{
-        //    var model = _animeService.GetAnimeDetails(id);
 
-        //    return View(model);
-        //}
     }
 }

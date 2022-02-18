@@ -10,7 +10,7 @@ namespace AnimeDatabase.Domain.Model
         public int Id { get; set; }
         public string Title { get; set; }
 
-        public AnimeDetails Details { get; set; }
+        public AnimeDetails AnimeDetails { get; set; }
         
         //public int TypeId { get; set; }
         //public Type Type { get; set; }

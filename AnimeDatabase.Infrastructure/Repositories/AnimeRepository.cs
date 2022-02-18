@@ -18,24 +18,24 @@ namespace AnimeDatabase.Infrastructure.Repositories
             _context = context;
         }
 
-        public int AddAnime(Anime anime)
-        {
-            _context.Animes.Add(anime);
-            _context.SaveChanges();
+        //public int AddAnime(Anime anime)
+        //{
+        //    _context.Animes.Add(anime);
+        //    _context.SaveChanges();
 
-            return anime.Id;
-        }
+        //    return anime.Id;
+        //}
 
-        public void DeleteAnime(int animeId)
-        {
-            var anime = _context.Animes.Find(animeId);
+        //public void DeleteAnime(int animeId)
+        //{
+        //    var anime = _context.Animes.Find(animeId);
 
-            if (anime != null)
-            {
-                _context.Animes.Remove(anime);
-                _context.SaveChanges();
-            }
-        }
+        //    if (anime != null)
+        //    {
+        //        _context.Animes.Remove(anime);
+        //        _context.SaveChanges();
+        //    }
+        //}
 
         //public Anime GetAnime(int animeId)
         //{
@@ -45,6 +45,17 @@ namespace AnimeDatabase.Infrastructure.Repositories
 
         //    return anime;
         //}
+
+
+        public Anime GetAnime(int animeId)
+        {
+            var anime = _context.Animes
+                .Include(x => x.AnimeDetails)
+                .FirstOrDefault(x => x.Id == animeId);
+
+            return anime;
+        }
+
 
         //public IQueryable<Anime> GetAnimesByTypeId(int typeId)
         //{

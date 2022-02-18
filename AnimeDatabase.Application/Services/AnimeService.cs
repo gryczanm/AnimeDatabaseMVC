@@ -22,13 +22,13 @@ namespace AnimeDatabase.Application.Services
             _mapper = mapper;
         }
 
-        //public AnimeDetailsViewModel GetAnimeDetails(int animeId)
-        //{
-        //    var anime = _animeRepo.GetAnime(animeId);
-        //    var animeVm = _mapper.Map<AnimeDetailsViewModel>(anime);
+        public AnimeDetailsViewModel GetAnimeDetails(int animeId)
+        {
+            var anime = _animeRepo.GetAnime(animeId);
+            var animeVm = _mapper.Map<AnimeDetailsViewModel>(anime);
 
-        //    return animeVm;
-        //}
+            return animeVm;
+        }
 
         public ListAnimeForList GetAllAnimesForList(int pageSize, int pageNumber, string searchString)
         {

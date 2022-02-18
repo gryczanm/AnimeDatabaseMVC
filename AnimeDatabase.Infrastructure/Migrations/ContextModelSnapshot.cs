@@ -280,7 +280,7 @@ namespace AnimeDatabase.Infrastructure.Migrations
             modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeDetails", b =>
                 {
                     b.HasOne("AnimeDatabase.Domain.Model.Anime", "Anime")
-                        .WithOne("Details")
+                        .WithOne("AnimeDetails")
                         .HasForeignKey("AnimeDatabase.Domain.Model.AnimeDetails", "AnimeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -341,7 +341,7 @@ namespace AnimeDatabase.Infrastructure.Migrations
 
             modelBuilder.Entity("AnimeDatabase.Domain.Model.Anime", b =>
                 {
-                    b.Navigation("Details");
+                    b.Navigation("AnimeDetails");
                 });
 #pragma warning restore 612, 618
         }

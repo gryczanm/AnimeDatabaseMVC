@@ -1,7 +1,7 @@
 ﻿@model AnimeDatabase.Application.ViewModels.AnimeDetailsViewModel
 
 <div>
-    <h4>AnimeDetailsVm</h4>
+    <h4>Anime Details</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -11,16 +11,10 @@
             @Html.DisplayFor(model => model.Title)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Type)
+            @Html.DisplayNameFor(model => model.Synopsis)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.Synopsis)
         </dd>
     </dl>
 </div>
