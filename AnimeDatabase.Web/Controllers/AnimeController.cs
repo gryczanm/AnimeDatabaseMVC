@@ -14,31 +14,14 @@ namespace AnimeDatabase.Web.Controllers
             _animeService = animeService;
         }
 
-        //[HttpGet]
-        //public IActionResult Index()
-        //{
-        //    var model = _animeService.GetAllAnimesForList(2, 1, "");
-            
-        //    return View(model);
-        //}
+        [HttpGet]
+        public IActionResult Index()
+        {
+            var model = _animeService.GetAllAnimesForList(2, 1, "");
 
-        //[HttpPost]
-        //public IActionResult Index(int pageSize, int? pageNumber, string searchString)
-        //{
-        //    if (!pageNumber.HasValue)
-        //    {
-        //        pageNumber = 1;
-        //    }
+            return View(model);
+        }
 
-        //    if (searchString is null)
-        //    {
-        //        searchString = String.Empty;
-        //    }
-
-        //    var model = _animeService.GetAllAnimesForList(pageSize, pageNumber.Value, searchString);
-
-        //    return View(model);
-        //}
 
         //[HttpGet]
         //public IActionResult AddAnime()

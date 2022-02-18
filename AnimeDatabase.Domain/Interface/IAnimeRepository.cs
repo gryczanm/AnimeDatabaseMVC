@@ -10,7 +10,7 @@ namespace AnimeDatabase.Domain.Interface
     {
         //int AddAnime(Anime anime);
         //Anime GetAnime(int animeId);
-        //IQueryable<Anime> GetAllAnimes();
+        IQueryable<Anime> GetAllAnimes();
         //void DeleteAnime(int animeId);
         //IQueryable<Anime> GetAnimesByTypeId(int typeId);
         ////IQueryable<AnimeTag> GetAllTags();

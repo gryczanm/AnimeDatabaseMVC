@@ -30,23 +30,23 @@ namespace AnimeDatabase.Application.Services
         //    return animeVm;
         //}
 
-        //public ListAnimeForList GetAllAnimesForList(int pageSize, int pageNumber, string searchString)
-        //{
-        //    var animes = _animeRepo.GetAllAnimes()
-        //        .Where(p => p.Title.StartsWith(searchString))
-        //        .ProjectTo<AnimeForListVm>(_mapper.ConfigurationProvider).ToList();
-        //    var animesToShow = animes.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
-        //    var animeList = new ListAnimeForList()
-        //    {
-        //        Animes = animesToShow,
-        //        CurrentPage = pageNumber,
-        //        PageSize = pageSize,
-        //        SearchString = searchString,
-        //        Count = animes.Count
-        //    };
+        public ListAnimeForList GetAllAnimesForList(int pageSize, int pageNumber, string searchString)
+        {
+            var animes = _animeRepo.GetAllAnimes()
+                .Where(p => p.Title.StartsWith(searchString))
+                .ProjectTo<AnimeForListVm>(_mapper.ConfigurationProvider).ToList();
+            var animesToShow = animes.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
+            var animeList = new ListAnimeForList()
+            {
+                Animes = animesToShow,
+                CurrentPage = pageNumber,
+                PageSize = pageSize,
+                SearchString = searchString,
+                Count = animes.Count
+            };
 
-        //    return animeList;
-        //}
+            return animeList;
+        }
 
         //public List<AnimeTypeVm> GetAllAnimeTypes()
         //{
@@ -79,3 +79,4 @@ namespace AnimeDatabase.Application.Services
         //}
     }
 }
+

@@ -1,6 +1,6 @@
 namespace AnimeDatabase.Domain.Model;
 
-public class Genre
+public class AnimeGenre
 {
     
 }
