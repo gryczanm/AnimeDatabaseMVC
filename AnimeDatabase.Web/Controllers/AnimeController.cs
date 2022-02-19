@@ -49,6 +49,27 @@ namespace AnimeDatabase.Web.Controllers
             return View(model);
         }
 
+        //pageSize - jak dużo rekordów na stronie
+        //pageNumber - którą stronę wyświetlić
+        //searchString - wyszukiwanie po nazwie
+        [HttpPost]
+        public IActionResult Index(int pageSize, int? pageNumber, string searchString)
+        {
+            if (!pageNumber.HasValue)
+            {
+                pageNumber = 1;
+            }
+
+            if (searchString is null)
+            {
+                searchString = String.Empty;
+            }
+
+            var model = _animeService.GetAllAnimesForList(pageSize, pageNumber.Value, searchString);
+
+            return View(model);
+        }
+
         //[HttpPost]
         //[ValidateAntiForgeryToken]
         //public IActionResult AddAnime(AnimeAddViewModel model)
@@ -68,8 +89,6 @@ namespace AnimeDatabase.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-
-
                 var id = _animeService.AddAnime(model);
                 return RedirectToAction("Index");
             }
