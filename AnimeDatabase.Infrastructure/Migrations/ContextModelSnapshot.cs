@@ -30,10 +30,15 @@ namespace AnimeDatabase.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AnimeTypeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AnimeTypeId");
 
                     b.ToTable("Animes");
 
@@ -41,6 +46,7 @@ namespace AnimeDatabase.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
+                            AnimeTypeId = 1,
                             Title = "Shingeki no Kyojin: The Final Season Part 2"
                         });
                 });
@@ -72,6 +78,34 @@ namespace AnimeDatabase.Infrastructure.Migrations
                             Id = 1,
                             AnimeId = 1,
                             Synopsis = "Turning against his former allies and enemies alike, Eren Yeager sets a disastrous plan in motion. \r\n                    Under the guidance of the Beast Titan, Zeke, Eren takes extreme measures to end the ancient conflict between Marley and Eldia—but his \r\n                    true intentions remain a mystery. Delving deep into his family's past, Eren fights to control his own destiny. \r\n                    Meanwhile, the long-feuding nations of Marley and Eldia utilize both soldiers and Titans in a brutal race to eliminate the other. \r\n                    Reiner Braun uses his own powers in a desperate bid to hold off Eren's own militaristic force, and his fellow Eldians—children Falco \r\n                    Grice and Gabi Braun—struggle to survive in the unfolding chaos.Elsewhere, Eren's childhood friends Mikasa Ackerman and Armin \r\n                    Arlert remain imprisoned alongside Eren's former Survey Corps companions, all disturbed by Eren's monstrous transformation. \r\n                    Under the blind belief that Eren still secretly harbors good intentions, Mikasa and the others enter the fray in an attempt \r\n                    to save their friend's very soul."
+                        });
+                });
+
+            modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AnimeTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "tv"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "movie"
                         });
                 });
 
@@ -277,6 +311,17 @@ namespace AnimeDatabase.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("AnimeDatabase.Domain.Model.Anime", b =>
+                {
+                    b.HasOne("AnimeDatabase.Domain.Model.AnimeType", "AnimeType")
+                        .WithMany("Animes")
+                        .HasForeignKey("AnimeTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AnimeType");
+                });
+
             modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeDetails", b =>
                 {
                     b.HasOne("AnimeDatabase.Domain.Model.Anime", "Anime")
@@ -342,6 +387,11 @@ namespace AnimeDatabase.Infrastructure.Migrations
             modelBuilder.Entity("AnimeDatabase.Domain.Model.Anime", b =>
                 {
                     b.Navigation("AnimeDetails");
+                });
+
+            modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeType", b =>
+                {
+                    b.Navigation("Animes");
                 });
 #pragma warning restore 612, 618
         }

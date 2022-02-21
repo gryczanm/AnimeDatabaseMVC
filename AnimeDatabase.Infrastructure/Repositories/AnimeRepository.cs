@@ -49,9 +49,7 @@ namespace AnimeDatabase.Infrastructure.Repositories
 
         public Anime GetAnime(int animeId)
         {
-            var anime = _context.Animes
-                .Include(x => x.AnimeDetails)
-                .FirstOrDefault(x => x.Id == animeId);
+            var anime = _context.Animes.FirstOrDefault(x => x.Id == animeId);
 
             return anime;
         }

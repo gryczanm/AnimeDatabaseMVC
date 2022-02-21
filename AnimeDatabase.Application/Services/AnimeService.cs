@@ -25,7 +25,14 @@ namespace AnimeDatabase.Application.Services
         public AnimeDetailsViewModel GetAnimeDetails(int animeId)
         {
             var anime = _animeRepo.GetAnime(animeId);
-            var animeVm = _mapper.Map<AnimeDetailsViewModel>(anime);
+            //var animeVm = _mapper.Map<AnimeDetailsViewModel>(anime);
+            var animeVm = new AnimeDetailsViewModel
+            {
+                Title = anime.Title,
+                Synopsis = anime.AnimeDetails.Synopsis,
+                Type = anime.AnimeType.Name
+            };
+
 
             return animeVm;
         }

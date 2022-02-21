@@ -10,14 +10,15 @@ namespace AnimeDatabase.Domain.Model
         public int Id { get; set; }
         public string Title { get; set; }
 
-        public AnimeDetails AnimeDetails { get; set; }
-        
-        //public int TypeId { get; set; }
-        //public Type Type { get; set; }
+        //one-to-one
+        public virtual AnimeDetails AnimeDetails { get; set; }
 
-        //public ICollection<Genre> Genres { get; set; }
-        
-        
+        //one-to-many
+        public int AnimeTypeId { get; set; }
+        public virtual AnimeType AnimeType { get; set; }
+
+
+
 
 
         // public int Id { get; set; }
