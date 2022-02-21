@@ -33,7 +33,7 @@ namespace AnimeDatabase.Web
         {
             services.AddDbContext<Context>(options =>
                 options
-                .UseLazyLoadingProxies()
+                //.UseLazyLoadingProxies()
                 .UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)

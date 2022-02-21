@@ -11,11 +11,11 @@ namespace AnimeDatabase.Domain.Model
         public string Title { get; set; }
 
         //one-to-one
-        public virtual AnimeDetails AnimeDetails { get; set; }
+        public AnimeDetails AnimeDetails { get; set; }
 
         //one-to-many
         public int AnimeTypeId { get; set; }
-        public virtual AnimeType AnimeType { get; set; }
+        public AnimeType AnimeType { get; set; }
 
 
 

@@ -11,6 +11,6 @@ namespace AnimeDatabase.Domain.Model
         public string Synopsis { get; set; }
 
         public int AnimeId { get; set; }
-        public virtual Anime Anime { get; set; }
+        public Anime Anime { get; set; }
     }
 }
