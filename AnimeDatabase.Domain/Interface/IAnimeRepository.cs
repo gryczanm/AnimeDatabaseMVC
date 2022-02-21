@@ -14,7 +14,7 @@ namespace AnimeDatabase.Domain.Interface
         //void DeleteAnime(int animeId);
         //IQueryable<Anime> GetAnimesByTypeId(int typeId);
         ////IQueryable<AnimeTag> GetAllTags();
-        ////IQueryable<AnimeType> GetAllTypes();
+        IQueryable<AnimeType> GetAllAnimeTypes();
         //void UpdateAnime(Anime anime);
     }
 }

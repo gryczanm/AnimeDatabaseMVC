@@ -11,7 +11,7 @@
     <div class="col-md-4">
         <form asp-action="AddAnime">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+@*            <div class="form-group">
                 <input type="hidden" asp-for="Id" />
             </div>
             <div class="form-group">
@@ -23,8 +23,8 @@
                 <label asp-for="Synopsis" class="control-label"></label>
                 <input asp-for="Synopsis" class="form-control" />
                 <span asp-validation-for="Synopsis" class="text-danger"></span>
-            </div>
-@*            <div class="form-group">
+            </div>*@
+            <div class="form-group">
                 <div class="form-group">
                     <label class="control-label">Anime Type</label><br />
                     @Html.Hidden("Id")
@@ -36,7 +36,7 @@
                             Value=Model.AnimeTypes[1].Id.ToString() }
                     }, new { @class = "btn btn-primary" })
                 </div>
-            </div>*@
+            </div>
             <div class="form-group">
                 <input type="submit" value="Submit" class="btn btn-success" />
                 <a asp-action="Index" type="button" class="btn btn-danger">Cancel</a>

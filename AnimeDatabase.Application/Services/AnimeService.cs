@@ -57,19 +57,30 @@ namespace AnimeDatabase.Application.Services
 
         public int AddAnime(AnimeAddViewModel animeVm)
         {
-            var anime = _mapper.Map<Anime>(animeVm);
+            //var anime = _mapper.Map<Anime>(animeVm);
+
+            //var id = _animeRepo.AddAnime(anime);
+
+            var anime = new Anime
+            {
+                Id = animeVm.Id,
+                Title = animeVm.Title,
+            };
+
+            anime.AnimeDetails.Synopsis = animeVm.Synopsis;
 
             var id = _animeRepo.AddAnime(anime);
 
             return id;
         }
 
-        //public List<AnimeTypeVm> GetAllAnimeTypes()
-        //{
-        //    List<AnimeTypeVm> allAnimeTypes = _animeRepo.GetAllTypes().ProjectTo<AnimeTypeVm>(_mapper.ConfigurationProvider).ToList();
-
-        //    return allAnimeTypes;
-        //}
+        public List<AnimeType> GetAllAnimeTypes()
+        {
+            //List<AnimeTypeVm> allAnimeTypes = _animeRepo.GetAllTypes().ProjectTo<AnimeTypeVm>(_mapper.ConfigurationProvider).ToList();
+            //List<AnimeTypeVm> animeTypes = _animeRepo.GetAllTypes().ToList();
+            List<AnimeType> animeTypes = _animeRepo.GetAllAnimeTypes().ToList();
+            return animeTypes;
+        }
 
 
 

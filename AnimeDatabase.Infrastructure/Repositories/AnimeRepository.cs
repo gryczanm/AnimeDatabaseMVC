@@ -65,12 +65,10 @@ namespace AnimeDatabase.Infrastructure.Repositories
         //    return animes;
         //}
 
-        //public IQueryable<AnimeType> GetAllTypes()
-        //{
-        //    var types = _context.AnimeTypes;
-
-        //    return types;
-        //}
+        public IQueryable<AnimeType> GetAllAnimeTypes()
+        {
+            return _context.AnimeTypes;
+        }
 
         public IQueryable<Anime> GetAllAnimes()
         {

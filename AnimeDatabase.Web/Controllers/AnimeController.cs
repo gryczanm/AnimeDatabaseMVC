@@ -22,33 +22,6 @@ namespace AnimeDatabase.Web.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        public IActionResult View(int id)
-        {
-            var model = _animeService.GetAnimeDetails(id);
-
-            return View(model);
-        }
-
-        //[HttpGet]
-        //public IActionResult AddAnime()
-        //{
-        //    var model = new AnimeAddViewModel()
-        //    {
-        //        AnimeTypes = _animeService.GetAllAnimeTypes()
-        //    };
-
-        //    return View(model);
-        //}
-
-        [HttpGet]
-        public IActionResult AddAnime()
-        {
-            var model = new AnimeAddViewModel();
-
-            return View(model);
-        }
-
         //pageSize - jak dużo rekordów na stronie
         //pageNumber - którą stronę wyświetlić
         //searchString - wyszukiwanie po nazwie
@@ -69,6 +42,35 @@ namespace AnimeDatabase.Web.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult View(int id)
+        {
+            var model = _animeService.GetAnimeDetails(id);
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult AddAnime()
+        {
+            var model = new AnimeAddViewModel()
+            {
+                AnimeTypes = _animeService.GetAllAnimeTypes(),
+            };
+
+            return View(model);
+        }
+
+        //[HttpGet]
+        //public IActionResult AddAnime()
+        //{
+        //    var model = new AnimeAddViewModel();
+
+        //    return View(model);
+        //}
+
+        
 
         //[HttpPost]
         //[ValidateAntiForgeryToken]
