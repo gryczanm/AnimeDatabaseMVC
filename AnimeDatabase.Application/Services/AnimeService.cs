@@ -74,12 +74,20 @@ namespace AnimeDatabase.Application.Services
             return id;
         }
 
-        public List<AnimeType> GetAllAnimeTypes()
+        public List<AnimeTypeVm> GetAllAnimeTypes()
         {
             //List<AnimeTypeVm> allAnimeTypes = _animeRepo.GetAllTypes().ProjectTo<AnimeTypeVm>(_mapper.ConfigurationProvider).ToList();
             //List<AnimeTypeVm> animeTypes = _animeRepo.GetAllTypes().ToList();
             List<AnimeType> animeTypes = _animeRepo.GetAllAnimeTypes().ToList();
-            return animeTypes;
+            List<AnimeTypeVm> animeTypeVms = new List<AnimeTypeVm>();
+
+            animeTypeVms = animeTypes.Select(x => new AnimeTypeVm()
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+
+            return animeTypeVms;
         }
 
 

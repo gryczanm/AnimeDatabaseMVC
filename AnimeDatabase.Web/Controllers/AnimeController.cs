@@ -56,7 +56,7 @@ namespace AnimeDatabase.Web.Controllers
         {
             var model = new AnimeAddViewModel()
             {
-                AnimeTypes = _animeService.GetAllAnimeTypes(),
+                AnimeTypes = _animeService.GetAllAnimeTypes()
             };
 
             return View(model);

@@ -13,7 +13,7 @@ namespace AnimeDatabase.Application.ViewModels
         public int Id { get; set; }
         public string Title { get; set; }
         public string Synopsis { get; set; }
-        public List<AnimeType> AnimeTypes { get; set; }
+        public List<AnimeTypeVm> AnimeTypes { get; set; }
 
 
         //public int TypeId { get; set; }
