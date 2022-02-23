@@ -23,8 +23,6 @@
 ## Technologies
 <!-- TECHNOLOGIES -->
 * .NET Core 6
-* ASP.NET, HTML5, MSSQL
-* WebAPI
 * Depedency Injection
 * Entity Framework Core 6.02 
 * LINQ
@@ -35,4 +33,4 @@ The application is still under heavy development.
 
 <!-- LICENSE -->
 ## License
-Distributed under the MIT License. See `LICENSE` for more information.
+<!-- Distributed under the MIT License. See `LICENSE` for more information. -->
