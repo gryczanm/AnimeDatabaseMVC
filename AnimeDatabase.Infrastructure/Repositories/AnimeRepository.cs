@@ -37,16 +37,6 @@ namespace AnimeDatabase.Infrastructure.Repositories
         //    }
         //}
 
-        //public Anime GetAnime(int animeId)
-        //{
-        //    var anime = _context.Animes.Include(a => a.Type)
-        //        .Include(a => a.AnimeDetails)
-        //        .FirstOrDefault(a => a.Id == animeId);
-
-        //    return anime;
-        //}
-
-
         public Anime GetAnime(int animeId)
         {
             var anime = _context.Animes
@@ -56,7 +46,6 @@ namespace AnimeDatabase.Infrastructure.Repositories
 
             return anime;
         }
-
 
         //public IQueryable<Anime> GetAnimesByTypeId(int typeId)
         //{

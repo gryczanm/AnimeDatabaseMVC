@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using AnimeDatabase.Application.Mapping;
-using AutoMapper;
+﻿using System.Collections.Generic;
 using FluentValidation;
-using System.ComponentModel.DataAnnotations;
-using AnimeDatabase.Domain.Model;
 
 namespace AnimeDatabase.Application.ViewModels
 {
@@ -15,22 +10,7 @@ namespace AnimeDatabase.Application.ViewModels
         public string Synopsis { get; set; }
         public int AnimeTypeId { get; set; }
         public List<AnimeTypeVm> AnimeTypes { get; set; }
-
-        //private Anime MapAnimeAddViewModelToAnime(AnimeAddViewModel animeVm)
-        //{
-        //    var anime = new Anime
-        //    {
-        //        Id = animeVm.Id,
-        //        Title = animeVm.Title,
-        //        AnimeDetails = new AnimeDetails()
-        //    };
-
-        //    anime.AnimeDetails.Synopsis = animeVm.Synopsis;
-        //    anime.AnimeTypeId = animeVm.AnimeTypeId;
-
-        //    return anime;
     }
-
 
     public class AnimeAddValidation : AbstractValidator<AnimeAddViewModel>
     {

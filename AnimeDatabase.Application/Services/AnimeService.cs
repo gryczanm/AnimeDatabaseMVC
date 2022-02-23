@@ -14,18 +14,16 @@ namespace AnimeDatabase.Application.Services
     public class AnimeService : IAnimeService
     {
         private readonly IAnimeRepository _animeRepo;
-        private readonly IMapper _mapper;
 
-        public AnimeService(IAnimeRepository animeRepo, IMapper mapper)
+        public AnimeService(IAnimeRepository animeRepo)
         {
             _animeRepo = animeRepo;
-            _mapper = mapper;
         }
 
         public AnimeDetailsViewModel GetAnimeDetails(int animeId)
         {
             var anime = _animeRepo.GetAnime(animeId);
-            //var animeVm = _mapper.Map<AnimeDetailsViewModel>(anime);
+
             var animeVm = new AnimeDetailsViewModel
             {
                 Title = anime.Title,
@@ -33,16 +31,23 @@ namespace AnimeDatabase.Application.Services
                 Type = anime.AnimeType.Name
             };
 
-
             return animeVm;
         }
 
         public ListAnimeForList GetAllAnimesForList(int pageSize, int pageNumber, string searchString)
         {
             var animes = _animeRepo.GetAllAnimes()
-                .Where(p => p.Title.StartsWith(searchString))
-                .ProjectTo<AnimeForListVm>(_mapper.ConfigurationProvider).ToList();
-            var animesToShow = animes.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
+                .Where(x => x.Title.StartsWith(searchString))
+                .ToList();
+
+            var animesToShow = animes.Skip(pageSize * (pageNumber - 1))
+                .Take(pageSize)
+                .Select(x => new AnimeForListVm()
+                {
+                    Id = x.Id,
+                    Title = x.Title
+                }).ToList();
+
             var animeList = new ListAnimeForList()
             {
                 Animes = animesToShow,
@@ -62,43 +67,28 @@ namespace AnimeDatabase.Application.Services
                 Id = animeVm.Id,
                 Title = animeVm.Title,
                 AnimeDetails = new AnimeDetails()
+                {
+                    Synopsis = animeVm.Synopsis
+                },
+                AnimeTypeId = animeVm.AnimeTypeId
             };
-
-            anime.AnimeDetails.Synopsis = animeVm.Synopsis;
-            anime.AnimeTypeId = animeVm.AnimeTypeId;
 
             var id = _animeRepo.AddAnime(anime);
 
             return id;
         }
 
-        //private Anime MapAnimeAddViewModelToAnime(AnimeAddViewModel animeVm)
-        //{
-        //    var anime = new Anime
-        //    {
-        //        Id = animeVm.Id,
-        //        Title = animeVm.Title,
-        //        AnimeDetails = new AnimeDetails()
-        //    };
-
-        //    anime.AnimeDetails.Synopsis = animeVm.Synopsis;
-        //    anime.AnimeTypeId = animeVm.AnimeTypeId;
-
-        //    return anime;
-        //}
-
         public List<AnimeTypeVm> GetAllAnimeTypes()
         {
-            List<AnimeType> animeTypes = _animeRepo.GetAllAnimeTypes().ToList();
-            List<AnimeTypeVm> animeTypeVms = new List<AnimeTypeVm>();
+            var animeTypes = _animeRepo.GetAllAnimeTypes()
+                .Select(x => new AnimeTypeVm()
+                {
+                    Id= x.Id,
+                    Name = x.Name
+                })
+                .ToList();
 
-            animeTypeVms = animeTypes.Select(x => new AnimeTypeVm()
-            {
-                Id = x.Id,
-                Name = x.Name
-            }).ToList();
-
-            return animeTypeVms;
+            return animeTypes;
         }
 
 
@@ -118,4 +108,3 @@ namespace AnimeDatabase.Application.Services
         //}
     }
 }
-
