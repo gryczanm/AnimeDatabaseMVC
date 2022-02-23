@@ -1,8 +1,5 @@
 ﻿using AnimeDatabase.Domain.Model;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AnimeDatabase.Domain.Interface
 {
@@ -14,7 +11,7 @@ namespace AnimeDatabase.Domain.Interface
         //void DeleteAnime(int animeId);
         //IQueryable<Anime> GetAnimesByTypeId(int typeId);
         ////IQueryable<AnimeTag> GetAllTags();
-        ////IQueryable<AnimeType> GetAllTypes();
+        IQueryable<AnimeType> GetAllAnimeTypes();
         //void UpdateAnime(Anime anime);
     }
 }

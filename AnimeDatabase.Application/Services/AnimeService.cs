@@ -2,30 +2,30 @@
 using AnimeDatabase.Application.ViewModels;
 using AnimeDatabase.Domain.Interface;
 using AnimeDatabase.Domain.Model;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AnimeDatabase.Application.Services
 {
     public class AnimeService : IAnimeService
     {
         private readonly IAnimeRepository _animeRepo;
-        private readonly IMapper _mapper;
 
-        public AnimeService(IAnimeRepository animeRepo, IMapper mapper)
+        public AnimeService(IAnimeRepository animeRepo)
         {
             _animeRepo = animeRepo;
-            _mapper = mapper;
         }
 
         public AnimeDetailsViewModel GetAnimeDetails(int animeId)
         {
             var anime = _animeRepo.GetAnime(animeId);
-            var animeVm = _mapper.Map<AnimeDetailsViewModel>(anime);
+
+            var animeVm = new AnimeDetailsViewModel
+            {
+                Title = anime.Title,
+                Synopsis = anime.AnimeDetails.Synopsis,
+                Type = anime.AnimeType.Name
+            };
 
             return animeVm;
         }
@@ -33,9 +33,17 @@ namespace AnimeDatabase.Application.Services
         public ListAnimeForList GetAllAnimesForList(int pageSize, int pageNumber, string searchString)
         {
             var animes = _animeRepo.GetAllAnimes()
-                .Where(p => p.Title.StartsWith(searchString))
-                .ProjectTo<AnimeForListVm>(_mapper.ConfigurationProvider).ToList();
-            var animesToShow = animes.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
+                .Where(x => x.Title.StartsWith(searchString))
+                .ToList();
+
+            var animesToShow = animes.Skip(pageSize * (pageNumber - 1))
+                .Take(pageSize)
+                .Select(x => new AnimeForListVm()
+                {
+                    Id = x.Id,
+                    Title = x.Title
+                }).ToList();
+
             var animeList = new ListAnimeForList()
             {
                 Animes = animesToShow,
@@ -50,19 +58,34 @@ namespace AnimeDatabase.Application.Services
 
         public int AddAnime(AnimeAddViewModel animeVm)
         {
-            var anime = _mapper.Map<Anime>(animeVm);
+            var anime = new Anime
+            {
+                Id = animeVm.Id,
+                Title = animeVm.Title,
+                AnimeDetails = new AnimeDetails()
+                {
+                    Synopsis = animeVm.Synopsis
+                },
+                AnimeTypeId = animeVm.AnimeTypeId
+            };
 
             var id = _animeRepo.AddAnime(anime);
 
             return id;
         }
 
-        //public List<AnimeTypeVm> GetAllAnimeTypes()
-        //{
-        //    List<AnimeTypeVm> allAnimeTypes = _animeRepo.GetAllTypes().ProjectTo<AnimeTypeVm>(_mapper.ConfigurationProvider).ToList();
+        public List<AnimeTypeVm> GetAllAnimeTypes()
+        {
+            var animeTypes = _animeRepo.GetAllAnimeTypes()
+                .Select(x => new AnimeTypeVm()
+                {
+                    Id= x.Id,
+                    Name = x.Name
+                })
+                .ToList();
 
-        //    return allAnimeTypes;
-        //}
+            return animeTypes;
+        }
 
 
 
@@ -81,4 +104,3 @@ namespace AnimeDatabase.Application.Services
         //}
     }
 }
-

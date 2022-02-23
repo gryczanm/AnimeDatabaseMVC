@@ -1,37 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using AnimeDatabase.Application.Mapping;
-using AutoMapper;
+﻿using System.Collections.Generic;
 using FluentValidation;
-using System.ComponentModel.DataAnnotations;
-using AnimeDatabase.Domain.Model;
 
 namespace AnimeDatabase.Application.ViewModels
 {
-    public class AnimeAddViewModel : IMapFrom<Anime>
+    public class AnimeAddViewModel
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Synopsis { get; set; }
-
-        //public int TypeId { get; set; }
-        //public List<AnimeTypeVm> AnimeTypes { get; set; }
-
-
-        //public void Mapping(Profile profile)
-        //{
-        //    profile.CreateMap<AnimeAddViewModel, Domain.Model.Anime>()
-        //        .ForPath(x => x.AnimeDetails.Description, opt => opt.MapFrom(x => x.Description))
-        //        .ForMember(x => x.TypeId, opt => opt.MapFrom(x => 2))
-        //        .ReverseMap();
-        //}
-
-        public void Mapping(Profile profile)
-        {
-            profile.CreateMap<AnimeAddViewModel, Anime>()
-                .ForPath(x => x.AnimeDetails.Synopsis, opt => opt.MapFrom(x => x.Synopsis))
-                .ReverseMap();
-        }
+        public int AnimeTypeId { get; set; }
+        public List<AnimeTypeVm> AnimeTypes { get; set; }
     }
 
     public class AnimeAddValidation : AbstractValidator<AnimeAddViewModel>
