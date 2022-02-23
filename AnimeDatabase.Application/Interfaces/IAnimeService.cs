@@ -1,8 +1,5 @@
 ﻿using AnimeDatabase.Application.ViewModels;
-using AnimeDatabase.Domain.Model;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace AnimeDatabase.Application.Interfaces
 {

@@ -1,11 +1,7 @@
 ﻿using AnimeDatabase.Domain.Interface;
 using AnimeDatabase.Domain.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-//using Type = AnimeDatabase.Domain.Model.AnimeType;
 
 namespace AnimeDatabase.Infrastructure.Repositories
 {

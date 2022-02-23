@@ -2,12 +2,8 @@
 using AnimeDatabase.Application.ViewModels;
 using AnimeDatabase.Domain.Interface;
 using AnimeDatabase.Domain.Model;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AnimeDatabase.Application.Services
 {
