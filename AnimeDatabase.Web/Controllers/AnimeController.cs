@@ -22,9 +22,6 @@ namespace AnimeDatabase.Web.Controllers
             return View(model);
         }
 
-        //pageSize - jak dużo rekordów na stronie
-        //pageNumber - którą stronę wyświetlić
-        //searchString - wyszukiwanie po nazwie
         [HttpPost]
         public IActionResult Index(int pageSize, int? pageNumber, string searchString)
         {
