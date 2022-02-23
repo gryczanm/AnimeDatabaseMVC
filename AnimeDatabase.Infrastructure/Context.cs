@@ -9,8 +9,7 @@ namespace AnimeDatabase.Infrastructure
         public DbSet<Anime> Animes { get; set; }
         public DbSet<AnimeDetails> AnimeDetails { get; set; }
         public DbSet<AnimeType> AnimeTypes { get; set; }
-        // public DbSet<AnimeTag> AnimesTags { get; set; }
-        // public DbSet<Anime_AnimeTag> Anime_AnimeTag { get; set; }
+        //public DbSet<AnimeGenre> AnimeGenres { get; set; }
 
 
         public Context(DbContextOptions options) : base(options)
@@ -27,6 +26,14 @@ namespace AnimeDatabase.Infrastructure
                 .HasOne<AnimeDetails>(x => x.AnimeDetails)
                 .WithOne(x => x.Anime)
                 .HasForeignKey<AnimeDetails>(x => x.AnimeId);
+
+            //many-to-many
+            // TODO FIX: ADD AnimeAnimeGenre table
+            //builder.Entity<Anime>()
+            //    .HasMany<AnimeGenre>(x => x.AnimeGenres)
+            //    .WithMany(x => x.Animes);
+
+            
 
             //one-to-many
             //builder.Entity<Anime>()

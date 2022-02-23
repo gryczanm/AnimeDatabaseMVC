@@ -22,6 +22,21 @@ namespace AnimeDatabase.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("AnimeAnimeGenre", b =>
+                {
+                    b.Property<int>("AnimeGenresId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AnimesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AnimeGenresId", "AnimesId");
+
+                    b.HasIndex("AnimesId");
+
+                    b.ToTable("AnimeAnimeGenre");
+                });
+
             modelBuilder.Entity("AnimeDatabase.Domain.Model.Anime", b =>
                 {
                     b.Property<int>("Id")
@@ -79,6 +94,22 @@ namespace AnimeDatabase.Infrastructure.Migrations
                             AnimeId = 1,
                             Synopsis = "Turning against his former allies and enemies alike, Eren Yeager sets a disastrous plan in motion. \r\n                    Under the guidance of the Beast Titan, Zeke, Eren takes extreme measures to end the ancient conflict between Marley and Eldia—but his \r\n                    true intentions remain a mystery. Delving deep into his family's past, Eren fights to control his own destiny. \r\n                    Meanwhile, the long-feuding nations of Marley and Eldia utilize both soldiers and Titans in a brutal race to eliminate the other. \r\n                    Reiner Braun uses his own powers in a desperate bid to hold off Eren's own militaristic force, and his fellow Eldians—children Falco \r\n                    Grice and Gabi Braun—struggle to survive in the unfolding chaos.Elsewhere, Eren's childhood friends Mikasa Ackerman and Armin \r\n                    Arlert remain imprisoned alongside Eren's former Survey Corps companions, all disturbed by Eren's monstrous transformation. \r\n                    Under the blind belief that Eren still secretly harbors good intentions, Mikasa and the others enter the fray in an attempt \r\n                    to save their friend's very soul."
                         });
+                });
+
+            modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeGenre", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AnimeGenres");
                 });
 
             modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeType", b =>
@@ -309,6 +340,21 @@ namespace AnimeDatabase.Infrastructure.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("AnimeAnimeGenre", b =>
+                {
+                    b.HasOne("AnimeDatabase.Domain.Model.AnimeGenre", null)
+                        .WithMany()
+                        .HasForeignKey("AnimeGenresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AnimeDatabase.Domain.Model.Anime", null)
+                        .WithMany()
+                        .HasForeignKey("AnimesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AnimeDatabase.Domain.Model.Anime", b =>
