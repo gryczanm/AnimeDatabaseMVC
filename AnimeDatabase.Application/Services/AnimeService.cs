@@ -1,5 +1,5 @@
 ﻿using AnimeDatabase.Application.Interfaces;
-using AnimeDatabase.Application.ViewModels;
+using AnimeDatabase.Application.ViewModels.Anime;
 using AnimeDatabase.Domain.Interface;
 using AnimeDatabase.Domain.Model;
 using System.Collections.Generic;
@@ -88,6 +88,16 @@ namespace AnimeDatabase.Application.Services
                 .ToList();
 
             return animeTypes;
+        }
+
+        public List<AnimeGenreVm> GetAllAnimeGenres()
+        {
+            var animeGenres = _animeRepo.GetAllAnimeGenres()
+                .Select(x => new AnimeGenreVm()
+                {
+
+                })
+                .ToList();
         }
 
 

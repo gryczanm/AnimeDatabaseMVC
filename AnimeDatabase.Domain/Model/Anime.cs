@@ -15,6 +15,6 @@ namespace AnimeDatabase.Domain.Model
         public AnimeType AnimeType { get; set; }
 
         //many-to-many
-        public ICollection<AnimeGenre> AnimeGenres { get; set; }
+        public ICollection<AnimeAnimeGenre> AnimeAnimeGenres { get; set; }
     }
 }

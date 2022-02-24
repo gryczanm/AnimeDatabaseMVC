@@ -1,4 +1,4 @@
-﻿using AnimeDatabase.Application.ViewModels;
+﻿using AnimeDatabase.Application.ViewModels.Anime;
 using System.Collections.Generic;
 
 namespace AnimeDatabase.Application.Interfaces
@@ -12,5 +12,6 @@ namespace AnimeDatabase.Application.Interfaces
         //void UpdateAnime(AnimeAddViewModel model);
         //List<AnimeTypeVm> GetAllAnimeTypes();
         List<AnimeTypeVm> GetAllAnimeTypes();
+        List<AnimeGenreVm> GetAllAnimeGenres();
     }
 }

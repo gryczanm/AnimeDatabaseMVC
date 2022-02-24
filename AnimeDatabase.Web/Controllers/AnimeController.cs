@@ -59,29 +59,6 @@ namespace AnimeDatabase.Web.Controllers
             return View(model);
         }
 
-        //[HttpGet]
-        //public IActionResult AddAnime()
-        //{
-        //    var model = new AnimeAddViewModel();
-
-        //    return View(model);
-        //}
-
-        
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult AddAnime(AnimeAddViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var id = _animeService.AddAnime(model);
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    return View(model);
-        //}
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddAnime(AnimeAddViewModel model)
@@ -91,6 +68,17 @@ namespace AnimeDatabase.Web.Controllers
                 var id = _animeService.AddAnime(model);
                 return RedirectToAction("Index");
             }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult AnimeTags()
+        {
+            var model = new AnimeAddViewModel()
+            {
+                AnimeTypes = _animeService.GetAllAnimeTypes()
+            };
 
             return View(model);
         }
@@ -115,7 +103,5 @@ namespace AnimeDatabase.Web.Controllers
 
         //    return View(model);
         //}
-
-
     }
 }

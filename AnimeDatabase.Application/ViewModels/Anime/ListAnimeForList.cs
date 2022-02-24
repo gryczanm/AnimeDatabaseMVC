@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AnimeDatabase.Application.ViewModels
+namespace AnimeDatabase.Application.ViewModels.Anime
 {
     public class ListAnimeForList
     {

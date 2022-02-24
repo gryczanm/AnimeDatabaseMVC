@@ -1,6 +1,6 @@
-namespace AnimeDatabase.Application.ViewModels.Anime
+﻿namespace AnimeDatabase.Application.ViewModels.Anime
 {
-    public class AnimeTypeVm
+    public class AnimeGenreVm
     {
         public int Id { get; set; }
         public string Name { get; set; }
