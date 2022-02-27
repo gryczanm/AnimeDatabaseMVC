@@ -1,5 +1,5 @@
 ﻿using AnimeDatabase.Application.Interfaces;
-using AnimeDatabase.Application.ViewModels;
+using AnimeDatabase.Application.ViewModels.Anime;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
