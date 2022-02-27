@@ -1,6 +1,7 @@
 ﻿using AnimeDatabase.Domain.Interface;
 using AnimeDatabase.Domain.Model;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 
 namespace AnimeDatabase.Infrastructure.Repositories
@@ -67,9 +68,9 @@ namespace AnimeDatabase.Infrastructure.Repositories
         //    _context.SaveChanges();
         //}
 
-        //public IQueryable<AnimeTag> GetAllTags()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public IQueryable<AnimeAnimeGenre> GetAllAnimeGenres()
+        {
+            return _context.AnimeAnimeGenre;
+        }
     }
 }

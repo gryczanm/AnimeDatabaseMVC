@@ -1,4 +1,4 @@
-﻿namespace AnimeDatabase.Application.ViewModels
+﻿namespace AnimeDatabase.Application.ViewModels.Anime
 {
     public class AnimeDetailsViewModel
     {

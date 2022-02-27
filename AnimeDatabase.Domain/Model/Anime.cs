@@ -1,4 +1,6 @@
-﻿namespace AnimeDatabase.Domain.Model
+﻿using System.Collections.Generic;
+
+namespace AnimeDatabase.Domain.Model
 {
     public class Anime
     {
@@ -11,5 +13,8 @@
         //one-to-many
         public int AnimeTypeId { get; set; }
         public AnimeType AnimeType { get; set; }
+
+        //many-to-many
+        public ICollection<AnimeAnimeGenre> AnimeAnimeGenres { get; set; }
     }
 }

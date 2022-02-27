@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using FluentValidation;
 
-namespace AnimeDatabase.Application.ViewModels
+
+namespace AnimeDatabase.Application.ViewModels.Anime
 {
     public class AnimeAddViewModel
     {

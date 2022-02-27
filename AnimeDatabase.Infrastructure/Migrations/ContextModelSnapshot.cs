@@ -48,6 +48,69 @@ namespace AnimeDatabase.Infrastructure.Migrations
                             Id = 1,
                             AnimeTypeId = 1,
                             Title = "Shingeki no Kyojin: The Final Season Part 2"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AnimeTypeId = 1,
+                            Title = "Fullmetal Alchemist: Brotherhood"
+                        });
+                });
+
+            modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeAnimeGenre", b =>
+                {
+                    b.Property<int>("AnimeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AnimeGenreId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AnimeId", "AnimeGenreId");
+
+                    b.HasIndex("AnimeGenreId");
+
+                    b.ToTable("AnimeAnimeGenre");
+
+                    b.HasData(
+                        new
+                        {
+                            AnimeId = 1,
+                            AnimeGenreId = 1
+                        },
+                        new
+                        {
+                            AnimeId = 1,
+                            AnimeGenreId = 2
+                        },
+                        new
+                        {
+                            AnimeId = 1,
+                            AnimeGenreId = 3
+                        },
+                        new
+                        {
+                            AnimeId = 1,
+                            AnimeGenreId = 4
+                        },
+                        new
+                        {
+                            AnimeId = 2,
+                            AnimeGenreId = 1
+                        },
+                        new
+                        {
+                            AnimeId = 2,
+                            AnimeGenreId = 2
+                        },
+                        new
+                        {
+                            AnimeId = 2,
+                            AnimeGenreId = 3
+                        },
+                        new
+                        {
+                            AnimeId = 2,
+                            AnimeGenreId = 5
                         });
                 });
 
@@ -78,6 +141,55 @@ namespace AnimeDatabase.Infrastructure.Migrations
                             Id = 1,
                             AnimeId = 1,
                             Synopsis = "Turning against his former allies and enemies alike, Eren Yeager sets a disastrous plan in motion. \r\n                    Under the guidance of the Beast Titan, Zeke, Eren takes extreme measures to end the ancient conflict between Marley and Eldia—but his \r\n                    true intentions remain a mystery. Delving deep into his family's past, Eren fights to control his own destiny. \r\n                    Meanwhile, the long-feuding nations of Marley and Eldia utilize both soldiers and Titans in a brutal race to eliminate the other. \r\n                    Reiner Braun uses his own powers in a desperate bid to hold off Eren's own militaristic force, and his fellow Eldians—children Falco \r\n                    Grice and Gabi Braun—struggle to survive in the unfolding chaos.Elsewhere, Eren's childhood friends Mikasa Ackerman and Armin \r\n                    Arlert remain imprisoned alongside Eren's former Survey Corps companions, all disturbed by Eren's monstrous transformation. \r\n                    Under the blind belief that Eren still secretly harbors good intentions, Mikasa and the others enter the fray in an attempt \r\n                    to save their friend's very soul."
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AnimeId = 2,
+                            Synopsis = "After a horrific alchemy experiment goes wrong in the Elric household, brothers Edward and \r\n                    Alphonse are left in a catastrophic new reality. Ignoring the alchemical principle banning human transmutation, the boys attempted \r\n                    to bring their recently deceased mother back to life. Instead, they suffered brutal personal loss: Alphonse's body disintegrated while \r\n                    Edward lost a leg and then sacrificed an arm to keep Alphonse's soul in the physical realm by binding it to a hulking suit of armor."
+                        });
+                });
+
+            modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeGenre", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AnimeGenres");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Action"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Drama"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Fantasy"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Mystery"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Comedy"
                         });
                 });
 
@@ -322,6 +434,25 @@ namespace AnimeDatabase.Infrastructure.Migrations
                     b.Navigation("AnimeType");
                 });
 
+            modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeAnimeGenre", b =>
+                {
+                    b.HasOne("AnimeDatabase.Domain.Model.AnimeGenre", "AnimeGenre")
+                        .WithMany("AnimeAnimeGenres")
+                        .HasForeignKey("AnimeGenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AnimeDatabase.Domain.Model.Anime", "Anime")
+                        .WithMany("AnimeAnimeGenres")
+                        .HasForeignKey("AnimeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Anime");
+
+                    b.Navigation("AnimeGenre");
+                });
+
             modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeDetails", b =>
                 {
                     b.HasOne("AnimeDatabase.Domain.Model.Anime", "Anime")
@@ -386,7 +517,14 @@ namespace AnimeDatabase.Infrastructure.Migrations
 
             modelBuilder.Entity("AnimeDatabase.Domain.Model.Anime", b =>
                 {
+                    b.Navigation("AnimeAnimeGenres");
+
                     b.Navigation("AnimeDetails");
+                });
+
+            modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeGenre", b =>
+                {
+                    b.Navigation("AnimeAnimeGenres");
                 });
 
             modelBuilder.Entity("AnimeDatabase.Domain.Model.AnimeType", b =>

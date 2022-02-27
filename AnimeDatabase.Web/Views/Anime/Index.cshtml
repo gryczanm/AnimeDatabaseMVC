@@ -1,4 +1,4 @@
-﻿@model AnimeDatabase.Application.ViewModels.ListAnimeForList
+﻿@model AnimeDatabase.Application.ViewModels.Anime.ListAnimeForList
 
 <p>
     <a asp-action="AddAnime">Create New</a>
@@ -18,6 +18,9 @@
                     <th>
                         Name
                     </th>
+                    <th>
+                        Type
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +32,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TypeName)
                         </td>
                         <td>
                             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

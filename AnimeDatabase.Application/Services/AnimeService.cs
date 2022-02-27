@@ -1,5 +1,5 @@
 ﻿using AnimeDatabase.Application.Interfaces;
-using AnimeDatabase.Application.ViewModels;
+using AnimeDatabase.Application.ViewModels.Anime;
 using AnimeDatabase.Domain.Interface;
 using AnimeDatabase.Domain.Model;
 using System.Collections.Generic;
@@ -34,15 +34,18 @@ namespace AnimeDatabase.Application.Services
         {
             var animes = _animeRepo.GetAllAnimes()
                 .Where(x => x.Title.StartsWith(searchString))
+                .Select(x => new AnimeForListVm()
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    AnimeTypeId = x.AnimeTypeId,
+                    TypeName = x.AnimeType.Name
+                })
                 .ToList();
 
             var animesToShow = animes.Skip(pageSize * (pageNumber - 1))
                 .Take(pageSize)
-                .Select(x => new AnimeForListVm()
-                {
-                    Id = x.Id,
-                    Title = x.Title
-                }).ToList();
+                .ToList();
 
             var animeList = new ListAnimeForList()
             {
@@ -86,6 +89,16 @@ namespace AnimeDatabase.Application.Services
 
             return animeTypes;
         }
+
+        //public List<AnimeGenreVm> GetAllAnimeGenres()
+        //{
+        //    var animeGenres = _animeRepo.GetAllAnimeGenres()
+        //        .Select(x => new AnimeGenreVm()
+        //        {
+
+        //        })
+        //        .ToList();
+        //}
 
 
 
