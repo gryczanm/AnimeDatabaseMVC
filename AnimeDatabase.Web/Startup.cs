@@ -1,5 +1,5 @@
 using AnimeDatabase.Application;
-using AnimeDatabase.Application.ViewModels.Anime;
+using AnimeDatabase.Application.ViewModels;
 using AnimeDatabase.Infrastructure;
 using FluentValidation;
 using FluentValidation.AspNetCore;
