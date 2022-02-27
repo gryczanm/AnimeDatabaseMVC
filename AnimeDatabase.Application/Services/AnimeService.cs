@@ -90,15 +90,15 @@ namespace AnimeDatabase.Application.Services
             return animeTypes;
         }
 
-        public List<AnimeGenreVm> GetAllAnimeGenres()
-        {
-            var animeGenres = _animeRepo.GetAllAnimeGenres()
-                .Select(x => new AnimeGenreVm()
-                {
+        //public List<AnimeGenreVm> GetAllAnimeGenres()
+        //{
+        //    var animeGenres = _animeRepo.GetAllAnimeGenres()
+        //        .Select(x => new AnimeGenreVm()
+        //        {
 
-                })
-                .ToList();
-        }
+        //        })
+        //        .ToList();
+        //}
 
 
 

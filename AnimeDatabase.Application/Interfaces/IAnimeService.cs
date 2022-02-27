@@ -12,6 +12,6 @@ namespace AnimeDatabase.Application.Interfaces
         //void UpdateAnime(AnimeAddViewModel model);
         //List<AnimeTypeVm> GetAllAnimeTypes();
         List<AnimeTypeVm> GetAllAnimeTypes();
-        List<AnimeGenreVm> GetAllAnimeGenres();
+        //List<AnimeGenreVm> GetAllAnimeGenres();
     }
 }
