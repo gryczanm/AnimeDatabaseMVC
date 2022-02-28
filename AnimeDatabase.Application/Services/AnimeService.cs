@@ -1,5 +1,6 @@
 ﻿using AnimeDatabase.Application.Interfaces;
 using AnimeDatabase.Application.ViewModels.Anime;
+using AnimeDatabase.Application.ViewModels.AnimeType;
 using AnimeDatabase.Domain.Interface;
 using AnimeDatabase.Domain.Model;
 using System.Linq;
@@ -9,10 +10,12 @@ namespace AnimeDatabase.Application.Services
     public class AnimeService : IAnimeService
     {
         private readonly IAnimeRepository _animeRepository;
+        private readonly IAnimeTypeRepository _animeTypeRepository;
 
-        public AnimeService(IAnimeRepository animeRepository)
+        public AnimeService(IAnimeRepository animeRepository, IAnimeTypeRepository animeTypeRepository)
         {
             _animeRepository = animeRepository;
+            _animeTypeRepository = animeTypeRepository;
         }
 
         public AnimeDetailsViewModel GetAnimeDetails(int animeId)
@@ -76,32 +79,23 @@ namespace AnimeDatabase.Application.Services
             return id;
         }
 
+        public IQueryable<AnimeTypeVm> GetAnimeTypesToSelectList()
+        {
+            var animeTypes = _animeTypeRepository.GetAllAnimeTypes()
+                .Select(x => new AnimeTypeVm
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                });
 
+            return animeTypes;
+        }
 
-        //public List<AnimeGenreVm> GetAllAnimeGenres()
-        //{
-        //    var animeGenres = _animeRepo.GetAllAnimeGenres()
-        //        .Select(x => new AnimeGenreVm()
-        //        {
+        public AnimeAddViewModel SetParametersToVm(AnimeAddViewModel model)
+        {
+            model.AnimeTypes = GetAnimeTypesToSelectList().ToList();
 
-        //        })
-        //        .ToList();
-        //}
-
-
-
-        //public AnimeAddViewModel GetAnimeForEdit(int id)
-        //{
-        //    var anime = _animeRepo.GetAnime(id);
-        //    var animeVm = _mapper.Map<AnimeAddViewModel>(anime);
-
-        //    return animeVm;
-        //}
-
-        //public void UpdateAnime(AnimeAddViewModel model)
-        //{
-        //    var anime = _mapper.Map<Anime>(model);
-        //    _animeRepo.UpdateAnime(anime);
-        //}
+            return model;
+        }
     }
 }

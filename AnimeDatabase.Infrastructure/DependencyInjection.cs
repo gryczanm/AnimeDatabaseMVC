@@ -8,6 +8,7 @@ namespace AnimeDatabase.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddTransient<IAnimeRepository, AnimeRepository>();
+            services.AddTransient<IAnimeTypeRepository, AnimeTypeRepository>();
 
             return services;
         }

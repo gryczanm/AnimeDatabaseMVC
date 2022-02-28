@@ -1,4 +1,5 @@
 ﻿using AnimeDatabase.Domain.Interface;
+using AnimeDatabase.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,11 @@ namespace AnimeDatabase.Infrastructure.Repositories
         public AnimeTypeRepository(Context context)
         {
             _context = context;
+        }
+
+        public IQueryable<AnimeType> GetAllAnimeTypes()
+        {
+            return _context.AnimeTypes;
         }
     }
 }
