@@ -1,7 +1,6 @@
 ﻿using AnimeDatabase.Application.Interfaces;
 using AnimeDatabase.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace AnimeDatabase.Application
 {
@@ -10,7 +9,7 @@ namespace AnimeDatabase.Application
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddTransient<IAnimeService, AnimeService>();
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddTransient<IAnimeTypeService, AnimeTypeService>();
 
             return services;
         }

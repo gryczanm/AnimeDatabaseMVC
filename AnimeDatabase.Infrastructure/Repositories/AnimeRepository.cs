@@ -23,17 +23,6 @@ namespace AnimeDatabase.Infrastructure.Repositories
             return anime.Id;
         }
 
-        //public void DeleteAnime(int animeId)
-        //{
-        //    var anime = _context.Animes.Find(animeId);
-
-        //    if (anime != null)
-        //    {
-        //        _context.Animes.Remove(anime);
-        //        _context.SaveChanges();
-        //    }
-        //}
-
         public Anime GetAnime(int animeId)
         {
             var anime = _context.Animes
@@ -44,13 +33,6 @@ namespace AnimeDatabase.Infrastructure.Repositories
             return anime;
         }
 
-        //public IQueryable<Anime> GetAnimesByTypeId(int typeId)
-        //{
-        //    var animes = _context.Animes.Where(a => a.TypeId == typeId);
-
-        //    return animes;
-        //}
-
         public IQueryable<AnimeType> GetAllAnimeTypes()
         {
             return _context.AnimeTypes;
@@ -60,13 +42,6 @@ namespace AnimeDatabase.Infrastructure.Repositories
         {
             return _context.Animes;
         }
-
-        //public void UpdateAnime(Anime anime)
-        //{
-        //    _context.Attach(anime);
-        //    _context.Entry(anime).Property("Title").IsModified = true;
-        //    _context.SaveChanges();
-        //}
 
         public IQueryable<AnimeAnimeGenre> GetAllAnimeGenres()
         {

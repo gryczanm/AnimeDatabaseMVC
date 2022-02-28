@@ -2,23 +2,22 @@
 using AnimeDatabase.Application.ViewModels.Anime;
 using AnimeDatabase.Domain.Interface;
 using AnimeDatabase.Domain.Model;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace AnimeDatabase.Application.Services
 {
     public class AnimeService : IAnimeService
     {
-        private readonly IAnimeRepository _animeRepo;
+        private readonly IAnimeRepository _animeRepository;
 
-        public AnimeService(IAnimeRepository animeRepo)
+        public AnimeService(IAnimeRepository animeRepository)
         {
-            _animeRepo = animeRepo;
+            _animeRepository = animeRepository;
         }
 
         public AnimeDetailsViewModel GetAnimeDetails(int animeId)
         {
-            var anime = _animeRepo.GetAnime(animeId);
+            var anime = _animeRepository.GetAnime(animeId);
 
             var animeVm = new AnimeDetailsViewModel
             {
@@ -32,7 +31,7 @@ namespace AnimeDatabase.Application.Services
 
         public ListAnimeForList GetAllAnimesForList(int pageSize, int pageNumber, string searchString)
         {
-            var animes = _animeRepo.GetAllAnimes()
+            var animes = _animeRepository.GetAllAnimes()
                 .Where(x => x.Title.StartsWith(searchString))
                 .Select(x => new AnimeForListVm()
                 {
@@ -72,23 +71,12 @@ namespace AnimeDatabase.Application.Services
                 AnimeTypeId = animeVm.AnimeTypeId
             };
 
-            var id = _animeRepo.AddAnime(anime);
+            var id = _animeRepository.AddAnime(anime);
 
             return id;
         }
 
-        public List<AnimeTypeVm> GetAllAnimeTypes()
-        {
-            var animeTypes = _animeRepo.GetAllAnimeTypes()
-                .Select(x => new AnimeTypeVm()
-                {
-                    Id= x.Id,
-                    Name = x.Name
-                })
-                .ToList();
 
-            return animeTypes;
-        }
 
         //public List<AnimeGenreVm> GetAllAnimeGenres()
         //{

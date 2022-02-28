@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AnimeDatabase.Application.ViewModels.AnimeType;
 using FluentValidation;
 
 
@@ -9,6 +10,7 @@ namespace AnimeDatabase.Application.ViewModels.Anime
         public int Id { get; set; }
         public string Title { get; set; }
         public string Synopsis { get; set; }
+
         public int AnimeTypeId { get; set; }
         public List<AnimeTypeVm> AnimeTypes { get; set; }
     }

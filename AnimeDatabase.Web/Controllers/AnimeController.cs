@@ -1,16 +1,19 @@
 ﻿using AnimeDatabase.Application.Interfaces;
 using AnimeDatabase.Application.ViewModels.Anime;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 
 namespace AnimeDatabase.Web.Controllers
 {
     public class AnimeController : Controller
     {
+        private readonly ILogger<HomeController> _logger;
         private readonly IAnimeService _animeService;
 
-        public AnimeController(IAnimeService animeService)
+        public AnimeController(ILogger<HomeController> logger, IAnimeService animeService)
         {
+            _logger = logger;
             _animeService = animeService;
         }
 
@@ -55,10 +58,13 @@ namespace AnimeDatabase.Web.Controllers
         [Route("anime/new")]
         public IActionResult AddAnime()
         {
-            var model = new AnimeAddViewModel()
-            {
-                AnimeTypes = _animeService.GetAllAnimeTypes()
-            };
+            //var model = new AnimeAddViewModel()
+            //{
+            //    AnimeTypes = _animeService.GetAllAnimeTypes()
+            //};
+
+            var model = new AnimeAddViewModel();
+
 
             return View(model);
         }
@@ -77,16 +83,16 @@ namespace AnimeDatabase.Web.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        public IActionResult AnimeTags()
-        {
-            var model = new AnimeAddViewModel()
-            {
-                AnimeTypes = _animeService.GetAllAnimeTypes()
-            };
+        //[HttpGet]
+        //public IActionResult AnimeTags()
+        //{
+        //    var model = new AnimeAddViewModel()
+        //    {
+        //        AnimeTypes = _animeService.GetAllAnimeTypes()
+        //    };
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
         //[HttpGet]
         //public IActionResult EditAnime(int id)

@@ -36,7 +36,7 @@
                 <input asp-for="Synopsis" class="form-control" />
                 <span asp-validation-for="Synopsis" class="text-danger"></span>
             </div>*@
-            <div class="form-group">
+@*            <div class="form-group">
                 <div class="form-group">
                     <label class="control-label">Anime Type</label><br />
                     @Html.DropDownList("AnimeTypeId", new List<SelectListItem>
@@ -45,7 +45,7 @@
                         new SelectListItem { Text = Model.AnimeTypes[1].Name, Value=Model.AnimeTypes[1].Id.ToString() }
                     }, new { @class = "btn btn-primary" })
                 </div>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Submit" class="btn btn-primary" />
                 <a asp-action="Index" type="button" class="btn btn-secondary">Cancel</a>
