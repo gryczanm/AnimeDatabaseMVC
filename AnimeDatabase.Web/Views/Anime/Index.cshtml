@@ -1,10 +1,13 @@
 ﻿@model AnimeDatabase.Application.ViewModels.Anime.ListAnimeForList
 
-<h2>Anime</h2>
+<h1>Anime</h1>
 
-<span>
-    <a asp-action="AddAnime">Create New</a>
-</span>
+<p>
+    <a class="btn btn-primary" asp-controller="Anime" asp-action="AddAnime">Create</a>
+    <a class="btn btn-secondary" asp-controller="Anime" asp-action="Index">Animes</a>
+    <a class="btn btn-secondary" asp-controller="TypeOfAnime" asp-action="Index">Types</a>
+    <a class="btn btn-secondary" asp-controller="Genre" asp-action="Index">Genres</a>
+</p>
 <form class="form" asp-action="index" asp-controller="Anime" method="post">
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -38,9 +41,9 @@
                             @Html.DisplayFor(modelItem => item.TypeName)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("Details", "View", new { item.Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                            <a asp-controller="Anime" asp-action="EditAnime" asp-route-id="@item.Id" class="btn btn-secondary">Edit</a>
+                            <a asp-controller="Anime" asp-action="DetailsAnime" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                            <a asp-controller="Anime" asp-action="DeleteAnime" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 }

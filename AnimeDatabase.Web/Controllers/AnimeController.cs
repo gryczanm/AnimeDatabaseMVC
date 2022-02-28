@@ -15,6 +15,7 @@ namespace AnimeDatabase.Web.Controllers
         }
 
         [HttpGet]
+        [Route("anime")]
         public IActionResult Index()
         {
             var model = _animeService.GetAllAnimesForList(2, 1, "");
@@ -23,6 +24,7 @@ namespace AnimeDatabase.Web.Controllers
         }
 
         [HttpPost]
+        [Route("anime")]
         public IActionResult Index(int pageSize, int? pageNumber, string searchString)
         {
             if (!pageNumber.HasValue)
@@ -41,7 +43,8 @@ namespace AnimeDatabase.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult View(int id)
+        [Route("anime/details")]
+        public IActionResult Details(int id)
         {
             var model = _animeService.GetAnimeDetails(id);
 
@@ -49,6 +52,7 @@ namespace AnimeDatabase.Web.Controllers
         }
 
         [HttpGet]
+        [Route("anime/new")]
         public IActionResult AddAnime()
         {
             var model = new AnimeAddViewModel()
@@ -61,6 +65,7 @@ namespace AnimeDatabase.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("anime/new")]
         public IActionResult AddAnime(AnimeAddViewModel model)
         {
             if (ModelState.IsValid)
